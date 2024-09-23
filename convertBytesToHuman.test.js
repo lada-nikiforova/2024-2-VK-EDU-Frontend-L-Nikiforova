@@ -17,6 +17,7 @@ test('Возвращает false для неправильного типа да
   expect(convertBytesToHuman(NaN)).toBe(false)
   expect(convertBytesToHuman([])).toBe(false)
   expect(convertBytesToHuman({})).toBe(false)
+  expect(convertBytesToHuman(Infinity)).toBe(false)
 });
 
 test('Возвращает корректное значение для чисел', () => {

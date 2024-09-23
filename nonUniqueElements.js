@@ -26,23 +26,10 @@ nonUniqueElements([10, 9, 10, 10, 9, 8]) == [10, 9, 10, 10, 9]
 
 export default function nonUniqueElements(data) {
   // your solution goes here
-  var countArr = [];
-    for (var i = 0; i < data.length; i++){
-        var count = -1;
-      for (var j = 0; j < data.length; j++){
-        if (data[i] === data[j]){
-            count++;
-        }
-      }
-      countArr.push(count);
-    }
-    for (var i = 0; i < data.length; i++){
-      if (countArr[i] === 0){
-        data.splice(i, 1);
-        countArr.splice(i, 1);
-        i--;
-      }
-    }
-    return data;
+  const countMap = new Map();
+  for (var elem of data){
+      countMap.set(elem, (countMap.get(elem) || 0) + 1);
+  }
+  return data.filter(elem => countMap.get(elem) > 1);
 }
 
