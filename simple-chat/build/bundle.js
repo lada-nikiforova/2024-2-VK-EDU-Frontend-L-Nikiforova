@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "99806063216b91140ec9";
+/******/ 	var hotCurrentHash = "7d1d72dadaeff2160603";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -859,18 +859,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../img/girl.jpg":
-/*!***********************!*\
-  !*** ../img/girl.jpg ***!
-  \***********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"./img/girl.jpg\");\n\n//# sourceURL=webpack:///../img/girl.jpg?");
-
-/***/ }),
-
 /***/ "./index.css":
 /*!*******************!*\
   !*** ./index.css ***!
@@ -890,7 +878,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./inde
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _img_girl_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../img/girl.jpg */ \"../img/girl.jpg\");\n\n\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ })
 

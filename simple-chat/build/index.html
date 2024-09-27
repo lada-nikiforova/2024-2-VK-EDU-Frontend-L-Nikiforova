@@ -33,7 +33,7 @@
             <div class="container-chat">
                 <div class="container-person">
                     <div class="container-message-person">
-                        <div class="img-icon"><img  src="../img/girl.jpg" alt=""></div>
+                        <div class="img-icon"><img  src="https://img.freepik.com/free-photo/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction_176420-15187.jpg" alt=""></div>
                         <div class="message-person">
                             <div class="name-p">Дарья Петрова</div>
                             <div class="message message-p">Привет, как твои дела?</div>
@@ -79,7 +79,9 @@
                     const key = localStorage.key(i);
                     const keyDate = new Date(key);
                     const messageHTML = localStorage.getItem(key);
-                    messages.push({key, messageHTML});
+                    if (!key.includes('loglevel') && messageHTML) {
+                         messages.push({ key, messageHTML });
+                    }
                 }
                 messages.sort((a, b) => new Date(a.key) - new Date(b.key));
                 for (let i = 0; i < messages.length; i++) {
