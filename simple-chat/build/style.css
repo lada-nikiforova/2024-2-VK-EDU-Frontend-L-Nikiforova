@@ -113,6 +113,8 @@ input {
     line-height: 24px;
     text-align: start;
     hyphens: auto;
+    word-break: break-word;
+    
 }
 .message-p{
     background-color: #c3b1bd;
@@ -143,10 +145,9 @@ input {
 
 }
 .container-message{
-    /* align-self: flex-end; */
     margin-bottom: 10px;
     max-width: 300px;
-    justify-content: end;
+    text-align: end;
 }
 
 
