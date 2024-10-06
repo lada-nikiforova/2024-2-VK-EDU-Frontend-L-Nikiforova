@@ -7,43 +7,44 @@
 
     </head>
     <body>
-        <style>
-
-        </style>
-        <div class="sidebar">
-            <button><span class="material-symbols-outlined icon">menu</span></button>
-            <button><span class="material-symbols-outlined icon">chat_bubble</span></button>
-            <button><span class="material-symbols-outlined icon">group</span></button>
-            <button><span class="material-symbols-outlined icon">settings</span></button>
-
+        <div id="chat-page" class="page-chat hidden">
+            <div class="sidebar">
+                <button class="icon-button"><span class="material-symbols-outlined icon">menu</span></button>
+                <button class="icon-button" id="list-button"><span class="material-symbols-outlined icon">chat_bubble</span> </button>
+                <button class="icon-button"><span class="material-symbols-outlined icon">group</span></button>
+                <button class="icon-button"><span class="material-symbols-outlined icon">settings</span></button>
+            </div> 
+            <div class="chat">
+                <div class="main_header">
+                    <!-- <div class="img-container"><img  src="https://img.freepik.com/premium-photo/confident-young-woman-with-curly-hair-in-casual-white-shirt-portrait-of-positivity-and-selfassura_1229340-2356.jpg" alt=""></div>
+                    <p><span class="person-name">Дарья Петрова</span> <br>Онлайн </p>      -->
+                </div>
+                <div id="chat1-container" class="container-chat"></div>
+                <div id="chat2-container" class="container-chat"></div>
+                <div class="lower">
+                    <button class="icon-button"> <span class="material-symbols-outlined icon">sentiment_satisfied</span></button>
+                    <form class="form" action="/">
+                        <input class="form-input" name="message-text" placeholder="Введите сообщение..." type="text">
+                    </form>
+                    <button class="send icon-button"><span class="material-symbols-outlined icon">send</span></button> 
+                </div>
+            </div>
         </div>
-        
-        
-        
-        <div class="chat">
-            
-            <div class="main_header">
-                <div class="img-icon"><img  src="https://img.freepik.com/premium-photo/confident-young-woman-with-curly-hair-in-casual-white-shirt-portrait-of-positivity-and-selfassura_1229340-2356.jpg" alt=""></div>
-                <p><span class="person-name">Дарья Петрова</span> <br>Онлайн </p>
+        <div id="chat-list" class="page-list"> 
+            <header class="header">
+                <button class="icon-button"><span class="material-symbols-outlined icon">menu</span></button>
+                <h1>Список чатов</h1>
+                <button class="icon-button"><span class="material-symbols-outlined icon">search</span></button>              
+            </header>
+            <div class="chat-list">
+                <button id="chat1Button" class="container-button-chat">
+                </button>
+                <button id="chat2Button" class="container-button-chat">
+                </button>
                 
-            </div>
-            
-            
 
-            <div class="container-chat">
             </div>
-                
-            
-            <div class="lower">
-                <button><span class="material-symbols-outlined icon">sentiment_satisfied</span></button>
-                
-                <form class="form" action="/">
-                    <input class="form-input" name="message-text" placeholder="Введите сообщение..." type="text">
-                </form>
-                <button class="send"><span class="material-symbols-outlined icon">send</span></button>
-                
-            </div>
-            
+            <button class="edit-button icon-button"><span class="material-symbols-outlined icon">edit</span></button>
 
         </div>
     </body>
