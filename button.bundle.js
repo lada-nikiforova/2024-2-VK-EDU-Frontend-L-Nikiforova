@@ -282,7 +282,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = "index";
+/******/ 			var chunkId = "button";
 /******/ 			// eslint-disable-next-line no-lone-blocks
 /******/ 			{
 /******/ 				hotEnsureUpdateChunk(chunkId);
@@ -854,31 +854,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire("./index.js")(__webpack_require__.s = "./index.js");
+/******/ 	return hotCreateRequire("./js/buttonChat.js")(__webpack_require__.s = "./js/buttonChat.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./index.css":
-/*!*******************!*\
-  !*** ./index.css ***!
-  \*******************/
+/***/ "./js/buttonChat.js":
+/*!**************************!*\
+  !*** ./js/buttonChat.js ***!
+  \**************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./index.css?");
-
-/***/ }),
-
-/***/ "./index.js":
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n\n\n\nvar form = document.querySelector('form');\nvar sendButton = document.querySelector('.send');\nvar chatButton = document.getElementById('list-button');\nvar chatListPage = document.getElementById('chat-list');\nvar chatPage = document.getElementById('chat-page');\nchatButton.addEventListener('click', function () {\n  window.location.href = 'pages.html';\n});\nsendButton.addEventListener('click', function (event) {\n  return handleSubmit(event);\n});\nform.addEventListener('submit', function (event) {\n  return handleSubmit(event);\n});\nvar input = document.querySelector('.form-input');\nfunction handleSubmit(event) {\n  event.preventDefault();\n  var activeChat = localStorage.getItem('activeChat');\n  var containerChat = document.getElementById(\"\".concat(activeChat, \"-container\"));\n  console.log(containerChat);\n  var messageText = input.value;\n  if (messageText === '') return;\n  var containerMessage = document.createElement('div');\n  containerMessage.classList.add('container-message');\n  containerChat.appendChild(containerMessage);\n  var nameElement = document.createElement('div');\n  nameElement.classList.add('name');\n  nameElement.innerText = 'Мария Иванова';\n  containerMessage.appendChild(nameElement);\n  var messageElement = document.createElement('div');\n  messageElement.classList.add('message');\n  var timeElement = document.createElement('div');\n  timeElement.classList.add('time');\n  var time = new Date();\n  timeElement.innerText = time.getHours().toString().padStart(2, '0') + ':' + time.getMinutes().toString().padStart(2, '0');\n  messageElement.innerText = messageText;\n  input.value = '';\n  containerMessage.appendChild(messageElement);\n  containerMessage.appendChild(timeElement);\n  setTimeout(answerPerson(activeChat, \"\".concat(activeChat, \"-container\")), 1200);\n  var data = localStorage.getItem(activeChat);\n  data = data ? data : '';\n  var newMessage = containerChat.innerHTML;\n  console.log(newMessage);\n  localStorage.setItem(activeChat, newMessage);\n  containerChat.scrollTop = containerChat.scrollHeight;\n}\nvar answer = \"Сообщение собеседника\";\nfunction answerPerson(chatId, containerId) {\n  var containerChat = document.getElementById(containerId);\n  var containerElement = document.createElement('div');\n  containerElement.classList.add('container-message-person');\n  containerChat.appendChild(containerElement);\n  var imgDiv = document.createElement('div');\n  imgDiv.classList.add('img-container');\n  var imgElement = document.createElement('img');\n  imgElement.classList.add('img-icon');\n  imgDiv.appendChild(imgElement);\n  containerElement.appendChild(imgDiv);\n  var containerMessage = document.createElement('div');\n  containerMessage.classList.add('message-person');\n  var messageElement = document.createElement('div');\n  messageElement.classList.add('message');\n  messageElement.classList.add('message-p');\n  var nameElement = document.createElement('div');\n  nameElement.classList.add('name');\n  nameElement.classList.add('name-p');\n  var timeElement = document.createElement('div');\n  timeElement.classList.add('time');\n  timeElement.classList.add('time-p');\n  if (chatId === 'chat1') {\n    imgElement.src = 'https://img.freepik.com/premium-photo/confident-young-woman-with-curly-hair-in-casual-white-shirt-portrait-of-positivity-and-selfassura_1229340-2356.jpg';\n    nameElement.innerText = \"Дарья Петрова\";\n  } else {\n    imgElement.src = 'https://img.freepik.com/free-photo/front-view-smiley-man-outdoors-city_23-2148955558.jpg';\n    nameElement.innerText = \"Иван Иванов\";\n  }\n  messageElement.innerHTML = answer;\n  var time = new Date();\n  timeElement.innerText = time.getHours().toString().padStart(2, '0') + ':' + time.getMinutes().toString().padStart(2, '0');\n  containerElement.appendChild(containerMessage);\n  containerMessage.appendChild(nameElement);\n  containerMessage.appendChild(messageElement);\n  containerMessage.appendChild(timeElement);\n  containerChat.scrollTop = containerChat.scrollHeight;\n}\n\n//# sourceURL=webpack:///./index.js?");
+eval("document.querySelectorAll('.container-button-chat').forEach(function (button) {\n  button.addEventListener('click', function () {\n    window.location.href = 'index.html';\n    var buttonId = this.id;\n    var numberId = buttonId.match(/\\d+/);\n    var currentNumber = parseInt(numberId[0], 10);\n    localStorage.setItem('activeChat', \"chat\".concat(currentNumber));\n  });\n});\n\n//# sourceURL=webpack:///./js/buttonChat.js?");
 
 /***/ })
 
