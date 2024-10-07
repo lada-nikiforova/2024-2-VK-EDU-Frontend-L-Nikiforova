@@ -1,6 +1,6 @@
-import {answerPerson} from './userAnswer.js';
+// import {answerPerson} from './userAnswer.js';
 const input = document.querySelector('.form-input');
-export function handleSubmit (event) {
+ function handleSubmit (event) {
     event.preventDefault();
     const activeChat = localStorage.getItem('activeChat');
     const containerChat = document.getElementById(`${activeChat}-container`);

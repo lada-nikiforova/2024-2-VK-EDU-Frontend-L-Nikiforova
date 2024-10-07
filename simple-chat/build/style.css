@@ -195,6 +195,10 @@
 
 }
 
+.container-button-chat:hover, .container-button-chat:focus, .container-button-chat:active{
+    background-color: #474759;
+}
+
 .container-img{
     width: 120px;
     height: 120px;
@@ -260,10 +264,15 @@ button{
     cursor: pointer;
 }
 
+.icon-button:hover, .icon-button:focus, .icon-button:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
 
 
 img{
-    width: 75px;
+    width: 60px;
 }
 
 
@@ -292,8 +301,8 @@ input {
     border-radius: 50%;
     background-color: #686a77;
     box-shadow: 0px 3px 10px  3px #120d14;
-    position: fixed; /* Фиксированное позиционирование относительно окна браузера */
-    bottom: 20px;     /* Расстояние от нижнего края окна */
+    position: fixed; 
+    bottom: 20px;     
     right: 20px; 
 }
 

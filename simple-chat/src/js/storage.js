@@ -1,5 +1,5 @@
-import {openChatPage} from './openChat.js';
-export function load() {
+// import {openChatPage} from './openChat.js';
+ function load() {
     const activePage = localStorage.getItem('activePage');
     const chatList = document.querySelector('.chat-list');
     const pageList = document.querySelector('.page-list');

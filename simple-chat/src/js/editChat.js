@@ -1,6 +1,6 @@
-import { displayLastMessage } from "./lastMessage";
+// import { displayLastMessage } from "./lastMessage";
 
-export function editChat(){
+ function editChat(){
     const chatList = document.querySelector('.chat-list');
     const button = document.createElement('button');
     button.classList.add('container-button-chat');

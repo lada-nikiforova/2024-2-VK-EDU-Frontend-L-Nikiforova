@@ -3,7 +3,7 @@
 const answer = "Сообщение собеседника";
 
 
-export function answerPerson(chatId, containerId){
+function answerPerson(chatId, containerId){
     const containerChat = document.getElementById(containerId);
 
     const containerElement = document.createElement('div');

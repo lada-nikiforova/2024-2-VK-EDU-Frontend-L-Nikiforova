@@ -18,7 +18,7 @@ let currentChatId = null;
 let currentContainerId = null;
 const chatListPage = document.getElementById('chat-list');
 const chatPage = document.getElementById('chat-page');
-export function openChatPage(chatId, containerId) {
+ function openChatPage(chatId, containerId) {
     document.getElementById('chat1-container').classList.remove('active');
     document.getElementById('chat2-container').classList.remove('active');
     const selectedChat = headers[chatId];

@@ -22,7 +22,7 @@ function getLastMessage(chatId) {
     };
 }
 
-export function displayLastMessage(chatId, chatPreviewElement) {
+function displayLastMessage(chatId, chatPreviewElement) {
     const lastMessageData = getLastMessage(chatId);
     const container = document.createElement('div');
     const name = document.createElement('div');
