@@ -1,3 +1,4 @@
+import '../index.css';
 function getLastMessage(chatId) {
     const chatMessagesHTML = localStorage.getItem(chatId);
     if (!chatMessagesHTML) {
@@ -55,3 +56,28 @@ function displayLastMessage(chatId, chatPreviewElement) {
     chatPreviewElement.appendChild(time);
     
 }
+
+
+
+function editChat(){
+    const chatList = document.querySelector('.chat-list');
+    const button = document.createElement('button');
+    button.classList.add('container-button-chat');
+    const lastChatId = chatList.lastElementChild.id;
+    let numberId = lastChatId.match(/\d+/);
+    let currentNumber = parseInt(numberId[0], 10);  
+    let nextNumber = currentNumber + 1;
+    let newId = lastChatId.replace(currentNumber, nextNumber);
+    console.log(newId);
+    button.id = newId;
+    chatList.appendChild(button);
+    
+    displayLastMessage(`chat${nextNumber}`, document.getElementById(newId));
+    let newChat = button.innerHTML;
+    localStorage.setItem(newId, newChat);
+}
+    
+document.querySelector('.edit-button').addEventListener('click',() =>  editChat());
+
+displayLastMessage('chat1', document.getElementById('chat1Button'));
+displayLastMessage('chat2', document.getElementById('chat2Button'));

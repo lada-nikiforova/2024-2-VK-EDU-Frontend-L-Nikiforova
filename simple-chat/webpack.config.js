@@ -13,12 +13,9 @@ module.exports = {
     context: SRC_PATH,
     entry: {
         index: './index.js',
-        edit: './js/editChat.js',
         lastMessage: './js/lastMessage.js',
         openChat: './js/openChat.js', 
-        storage: './js/storage.js',
-        submit: './js/submit.js', 
-        userAnswer: './js/userAnswer.js'
+        storage: './js/storageList.js',
     },
     output: {
         path: BUILD_PATH,
@@ -88,12 +85,12 @@ module.exports = {
         new HTMLWebpackPlugin({
             filename: 'index.html',
             template: './index.html',
-            // chunks: ['index', 'storage', 'submit', 'userAnswer']
+            chunks: ['index', 'openChat']
         }),
         new HTMLWebpackPlugin({
             filename: 'pages.html',
             template: './pages.html',
-            // chunks: ['index', 'storage', 'edit', 'lastMessage', 'openChat']
+            chunks: ['lastMessage', 'storage']
         })
     ]
 };

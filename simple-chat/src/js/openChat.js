@@ -1,3 +1,4 @@
+import '../index.css';
 const headers = {
     chat1: {
         data: [{
@@ -18,12 +19,14 @@ let currentChatId = null;
 let currentContainerId = null;
 const chatListPage = document.getElementById('chat-list');
 const chatPage = document.getElementById('chat-page');
- function openChatPage(chatId, containerId) {
+function openChatPage() {
     document.getElementById('chat1-container').classList.remove('active');
     document.getElementById('chat2-container').classList.remove('active');
-    const selectedChat = headers[chatId];
-    currentChatId = chatId; 
-    currentContainerId = containerId;
+    
+
+    currentChatId = localStorage.getItem('activeChat'); 
+    currentContainerId = `${currentChatId}-container`;
+    const selectedChat = headers[currentChatId];
     selectedChat.data.forEach((header) => {
         const headerDiv = `
             <div class="img-container"><img src="${header.src}" alt=""> </div>
@@ -31,15 +34,13 @@ const chatPage = document.getElementById('chat-page');
         `;
         document.querySelector('.main_header').insertAdjacentHTML('beforeend', headerDiv);
     });
-    const savedMessages = localStorage.getItem(chatId);
-    const chatContainer = document.getElementById(containerId);
+    const savedMessages = localStorage.getItem(currentChatId);
+    const chatContainer = document.getElementById(currentContainerId);
     if (savedMessages) {
         chatContainer.innerHTML = savedMessages;
     }
-    document.getElementById(containerId).classList.add('active');
-    chatListPage.classList.add('hidden');
-    chatPage.classList.remove('hidden');
+    document.getElementById(currentContainerId).classList.add('active');
     chatContainer.scrollTop = chatContainer.scrollHeight;
-    localStorage.setItem('activePage', 'chat');
-    localStorage.setItem('activeChat', chatId);
 }
+
+window.addEventListener('DOMContentLoaded', () => openChatPage());
