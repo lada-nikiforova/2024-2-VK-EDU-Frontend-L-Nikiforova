@@ -57,8 +57,6 @@ function displayLastMessage(chatId, chatPreviewElement) {
     
 }
 
-
-
 function editChat(){
     const chatList = document.querySelector('.chat-list');
     const button = document.createElement('button');
@@ -77,7 +75,7 @@ function editChat(){
     localStorage.setItem(newId, newChat);
 }
     
-document.querySelector('.edit-button').addEventListener('click',() =>  editChat());
+document.querySelector('.edit-button').addEventListener('click', () =>  editChat());
 
 displayLastMessage('chat1', document.getElementById('chat1Button'));
 displayLastMessage('chat2', document.getElementById('chat2Button'));

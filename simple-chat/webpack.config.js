@@ -16,6 +16,7 @@ module.exports = {
         lastMessage: './js/lastMessage.js',
         openChat: './js/openChat.js', 
         storage: './js/storageList.js',
+        button: './js/buttonChat.js'
     },
     output: {
         path: BUILD_PATH,
@@ -90,7 +91,7 @@ module.exports = {
         new HTMLWebpackPlugin({
             filename: 'pages.html',
             template: './pages.html',
-            chunks: ['lastMessage', 'storage']
+            chunks: ['lastMessage', 'storage', 'button']
         })
     ]
 };
