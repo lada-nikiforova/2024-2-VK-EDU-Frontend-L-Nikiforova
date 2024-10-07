@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "9edde82a8fc7fcaa2541";
+/******/ 	var hotCurrentHash = "f302ef8f2f137a257343";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -282,7 +282,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = "index";
+/******/ 			var chunkId = "storage";
 /******/ 			// eslint-disable-next-line no-lone-blocks
 /******/ 			{
 /******/ 				hotEnsureUpdateChunk(chunkId);
@@ -854,103 +854,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire("./index.js")(__webpack_require__.s = "./index.js");
+/******/ 	return hotCreateRequire("./js/storage.js")(__webpack_require__.s = "./js/storage.js");
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ "./index.css":
-/*!*******************!*\
-  !*** ./index.css ***!
-  \*******************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./index.css?");
-
-/***/ }),
-
-/***/ "./index.js":
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _js_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/storage */ \"./js/storage.js\");\n/* harmony import */ var _js_submit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/submit */ \"./js/submit.js\");\n/* harmony import */ var _js_openChat_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/openChat.js */ \"./js/openChat.js\");\n/* harmony import */ var _js_lastMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/lastMessage */ \"./js/lastMessage.js\");\n/* harmony import */ var _js_editChat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/editChat */ \"./js/editChat.js\");\n\n\n\n\n\n\n\n\nvar form = document.querySelector('form');\nvar sendButton = document.querySelector('.send');\nvar chatButton = document.getElementById('list-button');\nvar chatListPage = document.getElementById('chat-list');\nvar chatPage = document.getElementById('chat-page');\nchatButton.addEventListener('click', function () {\n  location.reload();\n  chatPage.classList.add('hidden');\n  chatListPage.classList.remove('hidden');\n  localStorage.setItem('activePage', 'chatList');\n});\ndocument.getElementById('chat1Button').addEventListener('click', function () {\n  return Object(_js_openChat_js__WEBPACK_IMPORTED_MODULE_3__[\"openChatPage\"])('chat1', 'chat1-container');\n});\ndocument.getElementById('chat2Button').addEventListener('click', function () {\n  return Object(_js_openChat_js__WEBPACK_IMPORTED_MODULE_3__[\"openChatPage\"])('chat2', 'chat2-container');\n});\nsendButton.addEventListener('click', function (event) {\n  return Object(_js_submit__WEBPACK_IMPORTED_MODULE_2__[\"handleSubmit\"])(event);\n});\nform.addEventListener('submit', function (event) {\n  return Object(_js_submit__WEBPACK_IMPORTED_MODULE_2__[\"handleSubmit\"])(event);\n});\nObject(_js_lastMessage__WEBPACK_IMPORTED_MODULE_4__[\"displayLastMessage\"])('chat1', document.getElementById('chat1Button'));\nObject(_js_lastMessage__WEBPACK_IMPORTED_MODULE_4__[\"displayLastMessage\"])('chat2', document.getElementById('chat2Button'));\ndocument.querySelector('.edit-button').addEventListener('click', function () {\n  return Object(_js_editChat__WEBPACK_IMPORTED_MODULE_5__[\"editChat\"])();\n});\nwindow.addEventListener('DOMContentLoaded', function () {\n  return Object(_js_storage__WEBPACK_IMPORTED_MODULE_1__[\"load\"])();\n});\n\n//# sourceURL=webpack:///./index.js?");
-
-/***/ }),
-
-/***/ "./js/editChat.js":
-/*!************************!*\
-  !*** ./js/editChat.js ***!
-  \************************/
-/*! exports provided: editChat */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"editChat\", function() { return editChat; });\n/* harmony import */ var _lastMessage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lastMessage */ \"./js/lastMessage.js\");\n\nfunction editChat() {\n  var chatList = document.querySelector('.chat-list');\n  var button = document.createElement('button');\n  button.classList.add('container-button-chat');\n  var lastChatId = chatList.lastElementChild.id;\n  var numberId = lastChatId.match(/\\d+/);\n  var currentNumber = parseInt(numberId[0], 10);\n  var nextNumber = currentNumber + 1;\n  var newId = lastChatId.replace(currentNumber, nextNumber);\n  console.log(newId);\n  button.id = newId;\n  chatList.appendChild(button);\n  Object(_lastMessage__WEBPACK_IMPORTED_MODULE_0__[\"displayLastMessage\"])(\"chat\".concat(nextNumber), document.getElementById(newId));\n  var newChat = button.innerHTML;\n  localStorage.setItem(newId, newChat);\n}\n\n//# sourceURL=webpack:///./js/editChat.js?");
-
-/***/ }),
-
-/***/ "./js/lastMessage.js":
-/*!***************************!*\
-  !*** ./js/lastMessage.js ***!
-  \***************************/
-/*! exports provided: displayLastMessage */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"displayLastMessage\", function() { return displayLastMessage; });\nfunction getLastMessage(chatId) {\n  var chatMessagesHTML = localStorage.getItem(chatId);\n  if (!chatMessagesHTML) {\n    return null;\n  }\n  var tempDiv = document.createElement('div');\n  tempDiv.innerHTML = chatMessagesHTML;\n  var messageContainers = tempDiv.querySelectorAll('.container-message, .container-message-person');\n  if (messageContainers.length === 0) {\n    return null;\n  }\n  var lastMessageContainer = messageContainers[messageContainers.length - 1];\n  var nameElement = lastMessageContainer.querySelector('.name');\n  var messageElement = lastMessageContainer.querySelector('.message');\n  var timeElement = lastMessageContainer.querySelector('.time');\n  var imgElement = lastMessageContainer.querySelector('.img-icon');\n  return {\n    name: nameElement.textContent,\n    message: messageElement.textContent,\n    time: timeElement.textContent,\n    img: imgElement.src\n  };\n}\nfunction displayLastMessage(chatId, chatPreviewElement) {\n  var lastMessageData = getLastMessage(chatId);\n  var container = document.createElement('div');\n  var name = document.createElement('div');\n  var message = document.createElement('div');\n  var time = document.createElement('div');\n  var imgDiv = document.createElement('div');\n  imgDiv.classList.add('container-img');\n  var img = document.createElement('img');\n  img.classList.add('chat-img');\n  imgDiv.appendChild(img);\n  container.classList.add('chat-info');\n  name.classList.add('chat-name');\n  message.classList.add('chat-message');\n  time.classList.add('chat-time');\n  if (lastMessageData) {\n    name.innerHTML = lastMessageData.name;\n    message.innerHTML = lastMessageData.message;\n    time.innerHTML = lastMessageData.time;\n    img.src = lastMessageData.img;\n  } else {\n    name.innerHTML = 'Неизвестный собеседник';\n    message.innerHTML = 'Нет сообщений';\n    time.innerHTML = '';\n    img.src = 'https://img.freepik.com/premium-vector/user-profile-vector-illustration_1237743-44335.jpg?';\n  }\n  chatPreviewElement.appendChild(imgDiv);\n  container.appendChild(name);\n  container.appendChild(message);\n  chatPreviewElement.appendChild(container);\n  chatPreviewElement.appendChild(time);\n}\n\n//# sourceURL=webpack:///./js/lastMessage.js?");
-
-/***/ }),
-
-/***/ "./js/openChat.js":
-/*!************************!*\
-  !*** ./js/openChat.js ***!
-  \************************/
-/*! exports provided: openChatPage */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"openChatPage\", function() { return openChatPage; });\nvar headers = {\n  chat1: {\n    data: [{\n      src: \"https://img.freepik.com/premium-photo/confident-young-woman-with-curly-hair-in-casual-white-shirt-portrait-of-positivity-and-selfassura_1229340-2356.jpg\",\n      name: \"Даша Петрова\"\n    }]\n  },\n  chat2: {\n    data: [{\n      src: \"https://img.freepik.com/free-photo/front-view-smiley-man-outdoors-city_23-2148955558.jpg\",\n      name: \"Иван Иванов\"\n    }]\n  }\n};\nvar currentChatId = null;\nvar currentContainerId = null;\nvar chatListPage = document.getElementById('chat-list');\nvar chatPage = document.getElementById('chat-page');\nfunction openChatPage(chatId, containerId) {\n  document.getElementById('chat1-container').classList.remove('active');\n  document.getElementById('chat2-container').classList.remove('active');\n  var selectedChat = headers[chatId];\n  currentChatId = chatId;\n  currentContainerId = containerId;\n  selectedChat.data.forEach(function (header) {\n    var headerDiv = \"\\n            <div class=\\\"img-container\\\"><img src=\\\"\".concat(header.src, \"\\\" alt=\\\"\\\"> </div>\\n            <p><span class=\\\"person-name\\\">\").concat(header.name, \"</span> <br>\\u041E\\u043D\\u043B\\u0430\\u0439\\u043D </p> \\n        \");\n    document.querySelector('.main_header').insertAdjacentHTML('beforeend', headerDiv);\n  });\n  var savedMessages = localStorage.getItem(chatId);\n  var chatContainer = document.getElementById(containerId);\n  if (savedMessages) {\n    chatContainer.innerHTML = savedMessages;\n  }\n  document.getElementById(containerId).classList.add('active');\n  chatListPage.classList.add('hidden');\n  chatPage.classList.remove('hidden');\n  chatContainer.scrollTop = chatContainer.scrollHeight;\n  localStorage.setItem('activePage', 'chat');\n  localStorage.setItem('activeChat', chatId);\n}\n\n//# sourceURL=webpack:///./js/openChat.js?");
-
-/***/ }),
 
 /***/ "./js/storage.js":
 /*!***********************!*\
   !*** ./js/storage.js ***!
   \***********************/
-/*! exports provided: load */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"load\", function() { return load; });\n/* harmony import */ var _openChat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./openChat.js */ \"./js/openChat.js\");\n\nfunction load() {\n  var activePage = localStorage.getItem('activePage');\n  var chatList = document.querySelector('.chat-list');\n  var pageList = document.querySelector('.page-list');\n  var pageChat = document.querySelector('.page-chat');\n  var activeChat = localStorage.getItem('activeChat');\n  if (activePage === 'chat') {\n    pageList.classList.add('hidden');\n    pageChat.classList.remove('hidden');\n    Object(_openChat_js__WEBPACK_IMPORTED_MODULE_0__[\"openChatPage\"])(activeChat, \"\".concat(activeChat, \"-container\"));\n  } else {\n    pageList.classList.remove('hidden');\n    pageChat.classList.add('hidden');\n    for (var i = 0; i < localStorage.length; i++) {\n      var key = localStorage.key(i);\n      if (key.startsWith('chat') && key.endsWith('Button')) {\n        console.log(key);\n        var chatData = localStorage.getItem(key);\n        var button = document.createElement('button');\n        button.classList.add('container-button-chat');\n        button.id = key;\n        button.innerHTML = chatData;\n        chatList.appendChild(button);\n      }\n    }\n  }\n}\n\n//# sourceURL=webpack:///./js/storage.js?");
-
-/***/ }),
-
-/***/ "./js/submit.js":
-/*!**********************!*\
-  !*** ./js/submit.js ***!
-  \**********************/
-/*! exports provided: handleSubmit */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"handleSubmit\", function() { return handleSubmit; });\n/* harmony import */ var _userAnswer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./userAnswer.js */ \"./js/userAnswer.js\");\n\nvar input = document.querySelector('.form-input');\nfunction handleSubmit(event) {\n  event.preventDefault();\n  var activeChat = localStorage.getItem('activeChat');\n  var containerChat = document.getElementById(\"\".concat(activeChat, \"-container\"));\n  // const chatId = document.getElementById(chatId);\n  console.log(containerChat);\n  var messageText = input.value;\n  if (messageText === '') return;\n  var containerMessage = document.createElement('div');\n  containerMessage.classList.add('container-message');\n  containerChat.appendChild(containerMessage);\n  var nameElement = document.createElement('div');\n  nameElement.classList.add('name');\n  nameElement.innerText = 'Мария Иванова';\n  containerMessage.appendChild(nameElement);\n  var messageElement = document.createElement('div');\n  messageElement.classList.add('message');\n  var timeElement = document.createElement('div');\n  timeElement.classList.add('time');\n  var time = new Date();\n  timeElement.innerText = time.getHours().toString().padStart(2, '0') + ':' + time.getMinutes().toString().padStart(2, '0');\n  messageElement.innerText = messageText;\n  input.value = '';\n  containerMessage.appendChild(messageElement);\n  containerMessage.appendChild(timeElement);\n  setTimeout(Object(_userAnswer_js__WEBPACK_IMPORTED_MODULE_0__[\"answerPerson\"])(activeChat, \"\".concat(activeChat, \"-container\")), 1200);\n  var data = localStorage.getItem(activeChat);\n  data = data ? data : '';\n  var newMessage = containerChat.innerHTML;\n  console.log(newMessage);\n  localStorage.setItem(activeChat, newMessage);\n  containerChat.scrollTop = containerChat.scrollHeight;\n}\n\n//# sourceURL=webpack:///./js/submit.js?");
-
-/***/ }),
-
-/***/ "./js/userAnswer.js":
-/*!**************************!*\
-  !*** ./js/userAnswer.js ***!
-  \**************************/
-/*! exports provided: answerPerson */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"answerPerson\", function() { return answerPerson; });\nvar answer = \"Сообщение собеседника\";\nfunction answerPerson(chatId, containerId) {\n  var containerChat = document.getElementById(containerId);\n  var containerElement = document.createElement('div');\n  containerElement.classList.add('container-message-person');\n  containerChat.appendChild(containerElement);\n  var imgDiv = document.createElement('div');\n  imgDiv.classList.add('img-container');\n  var imgElement = document.createElement('img');\n  imgElement.classList.add('img-icon');\n  imgDiv.appendChild(imgElement);\n  containerElement.appendChild(imgDiv);\n  var containerMessage = document.createElement('div');\n  containerMessage.classList.add('message-person');\n  var messageElement = document.createElement('div');\n  messageElement.classList.add('message');\n  messageElement.classList.add('message-p');\n  var nameElement = document.createElement('div');\n  nameElement.classList.add('name');\n  nameElement.classList.add('name-p');\n  var timeElement = document.createElement('div');\n  timeElement.classList.add('time');\n  timeElement.classList.add('time-p');\n  if (chatId === 'chat1') {\n    imgElement.src = 'https://img.freepik.com/premium-photo/confident-young-woman-with-curly-hair-in-casual-white-shirt-portrait-of-positivity-and-selfassura_1229340-2356.jpg';\n    nameElement.innerText = \"Дарья Петрова\";\n  } else {\n    imgElement.src = 'https://img.freepik.com/free-photo/front-view-smiley-man-outdoors-city_23-2148955558.jpg';\n    nameElement.innerText = \"Иван Иванов\";\n  }\n  messageElement.innerHTML = answer;\n  var time = new Date();\n  timeElement.innerText = time.getHours().toString().padStart(2, '0') + ':' + time.getMinutes().toString().padStart(2, '0');\n  containerElement.appendChild(containerMessage);\n  containerMessage.appendChild(nameElement);\n  containerMessage.appendChild(messageElement);\n  containerMessage.appendChild(timeElement);\n  containerChat.scrollTop = containerChat.scrollHeight;\n}\n\n//# sourceURL=webpack:///./js/userAnswer.js?");
+eval("// import {openChatPage} from './openChat.js';\nfunction load() {\n  var activePage = localStorage.getItem('activePage');\n  var chatList = document.querySelector('.chat-list');\n  var pageList = document.querySelector('.page-list');\n  var pageChat = document.querySelector('.page-chat');\n  var activeChat = localStorage.getItem('activeChat');\n  if (activePage === 'chat') {\n    pageList.classList.add('hidden');\n    pageChat.classList.remove('hidden');\n    openChatPage(activeChat, \"\".concat(activeChat, \"-container\"));\n  } else {\n    pageList.classList.remove('hidden');\n    pageChat.classList.add('hidden');\n    for (var i = 0; i < localStorage.length; i++) {\n      var key = localStorage.key(i);\n      if (key.startsWith('chat') && key.endsWith('Button')) {\n        console.log(key);\n        var chatData = localStorage.getItem(key);\n        var button = document.createElement('button');\n        button.classList.add('container-button-chat');\n        button.id = key;\n        button.innerHTML = chatData;\n        chatList.appendChild(button);\n      }\n    }\n  }\n}\n\n//# sourceURL=webpack:///./js/storage.js?");
 
 /***/ })
 
