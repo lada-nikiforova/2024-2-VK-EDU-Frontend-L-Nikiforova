@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "f302ef8f2f137a257343";
+/******/ 	var hotCurrentHash = "e17a6a6b3b66ec6d405b";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -854,19 +854,31 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire("./js/storage.js")(__webpack_require__.s = "./js/storage.js");
+/******/ 	return hotCreateRequire("./js/storageList.js")(__webpack_require__.s = "./js/storageList.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./js/storage.js":
-/*!***********************!*\
-  !*** ./js/storage.js ***!
-  \***********************/
+/***/ "./index.css":
+/*!*******************!*\
+  !*** ./index.css ***!
+  \*******************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("// import {openChatPage} from './openChat.js';\nfunction load() {\n  var activePage = localStorage.getItem('activePage');\n  var chatList = document.querySelector('.chat-list');\n  var pageList = document.querySelector('.page-list');\n  var pageChat = document.querySelector('.page-chat');\n  var activeChat = localStorage.getItem('activeChat');\n  if (activePage === 'chat') {\n    pageList.classList.add('hidden');\n    pageChat.classList.remove('hidden');\n    openChatPage(activeChat, \"\".concat(activeChat, \"-container\"));\n  } else {\n    pageList.classList.remove('hidden');\n    pageChat.classList.add('hidden');\n    for (var i = 0; i < localStorage.length; i++) {\n      var key = localStorage.key(i);\n      if (key.startsWith('chat') && key.endsWith('Button')) {\n        console.log(key);\n        var chatData = localStorage.getItem(key);\n        var button = document.createElement('button');\n        button.classList.add('container-button-chat');\n        button.id = key;\n        button.innerHTML = chatData;\n        chatList.appendChild(button);\n      }\n    }\n  }\n}\n\n//# sourceURL=webpack:///./js/storage.js?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./index.css?");
+
+/***/ }),
+
+/***/ "./js/storageList.js":
+/*!***************************!*\
+  !*** ./js/storageList.js ***!
+  \***************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.css */ \"./index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction load() {\n  var activePage = localStorage.getItem('activePage');\n  var chatList = document.querySelector('.chat-list');\n  var pageList = document.querySelector('.page-list');\n  var pageChat = document.querySelector('.page-chat');\n  var activeChat = localStorage.getItem('activeChat');\n  for (var i = 0; i < localStorage.length; i++) {\n    var key = localStorage.key(i);\n    if (key.startsWith('chat') && key.endsWith('Button')) {\n      console.log(key);\n      var chatData = localStorage.getItem(key);\n      var button = document.createElement('button');\n      button.classList.add('container-button-chat');\n      button.id = key;\n      button.innerHTML = chatData;\n      chatList.appendChild(button);\n    }\n  }\n}\nwindow.addEventListener('DOMContentLoaded', function () {\n  return load();\n});\n\n//# sourceURL=webpack:///./js/storageList.js?");
 
 /***/ })
 

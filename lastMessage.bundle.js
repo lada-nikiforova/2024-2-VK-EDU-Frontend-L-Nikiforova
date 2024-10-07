@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "f302ef8f2f137a257343";
+/******/ 	var hotCurrentHash = "e17a6a6b3b66ec6d405b";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -859,14 +859,26 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./index.css":
+/*!*******************!*\
+  !*** ./index.css ***!
+  \*******************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./index.css?");
+
+/***/ }),
+
 /***/ "./js/lastMessage.js":
 /*!***************************!*\
   !*** ./js/lastMessage.js ***!
   \***************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("function getLastMessage(chatId) {\n  var chatMessagesHTML = localStorage.getItem(chatId);\n  if (!chatMessagesHTML) {\n    return null;\n  }\n  var tempDiv = document.createElement('div');\n  tempDiv.innerHTML = chatMessagesHTML;\n  var messageContainers = tempDiv.querySelectorAll('.container-message, .container-message-person');\n  if (messageContainers.length === 0) {\n    return null;\n  }\n  var lastMessageContainer = messageContainers[messageContainers.length - 1];\n  var nameElement = lastMessageContainer.querySelector('.name');\n  var messageElement = lastMessageContainer.querySelector('.message');\n  var timeElement = lastMessageContainer.querySelector('.time');\n  var imgElement = lastMessageContainer.querySelector('.img-icon');\n  return {\n    name: nameElement.textContent,\n    message: messageElement.textContent,\n    time: timeElement.textContent,\n    img: imgElement.src\n  };\n}\nfunction displayLastMessage(chatId, chatPreviewElement) {\n  var lastMessageData = getLastMessage(chatId);\n  var container = document.createElement('div');\n  var name = document.createElement('div');\n  var message = document.createElement('div');\n  var time = document.createElement('div');\n  var imgDiv = document.createElement('div');\n  imgDiv.classList.add('container-img');\n  var img = document.createElement('img');\n  img.classList.add('chat-img');\n  imgDiv.appendChild(img);\n  container.classList.add('chat-info');\n  name.classList.add('chat-name');\n  message.classList.add('chat-message');\n  time.classList.add('chat-time');\n  if (lastMessageData) {\n    name.innerHTML = lastMessageData.name;\n    message.innerHTML = lastMessageData.message;\n    time.innerHTML = lastMessageData.time;\n    img.src = lastMessageData.img;\n  } else {\n    name.innerHTML = 'Неизвестный собеседник';\n    message.innerHTML = 'Нет сообщений';\n    time.innerHTML = '';\n    img.src = 'https://img.freepik.com/premium-vector/user-profile-vector-illustration_1237743-44335.jpg?';\n  }\n  chatPreviewElement.appendChild(imgDiv);\n  container.appendChild(name);\n  container.appendChild(message);\n  chatPreviewElement.appendChild(container);\n  chatPreviewElement.appendChild(time);\n}\n\n//# sourceURL=webpack:///./js/lastMessage.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.css */ \"./index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction getLastMessage(chatId) {\n  var chatMessagesHTML = localStorage.getItem(chatId);\n  if (!chatMessagesHTML) {\n    return null;\n  }\n  var tempDiv = document.createElement('div');\n  tempDiv.innerHTML = chatMessagesHTML;\n  var messageContainers = tempDiv.querySelectorAll('.container-message, .container-message-person');\n  if (messageContainers.length === 0) {\n    return null;\n  }\n  var lastMessageContainer = messageContainers[messageContainers.length - 1];\n  var nameElement = lastMessageContainer.querySelector('.name');\n  var messageElement = lastMessageContainer.querySelector('.message');\n  var timeElement = lastMessageContainer.querySelector('.time');\n  var imgElement = lastMessageContainer.querySelector('.img-icon');\n  return {\n    name: nameElement.textContent,\n    message: messageElement.textContent,\n    time: timeElement.textContent,\n    img: imgElement.src\n  };\n}\nfunction displayLastMessage(chatId, chatPreviewElement) {\n  var lastMessageData = getLastMessage(chatId);\n  var container = document.createElement('div');\n  var name = document.createElement('div');\n  var message = document.createElement('div');\n  var time = document.createElement('div');\n  var imgDiv = document.createElement('div');\n  imgDiv.classList.add('container-img');\n  var img = document.createElement('img');\n  img.classList.add('chat-img');\n  imgDiv.appendChild(img);\n  container.classList.add('chat-info');\n  name.classList.add('chat-name');\n  message.classList.add('chat-message');\n  time.classList.add('chat-time');\n  if (lastMessageData) {\n    name.innerHTML = lastMessageData.name;\n    message.innerHTML = lastMessageData.message;\n    time.innerHTML = lastMessageData.time;\n    img.src = lastMessageData.img;\n  } else {\n    name.innerHTML = 'Неизвестный собеседник';\n    message.innerHTML = 'Нет сообщений';\n    time.innerHTML = '';\n    img.src = 'https://img.freepik.com/premium-vector/user-profile-vector-illustration_1237743-44335.jpg?';\n  }\n  chatPreviewElement.appendChild(imgDiv);\n  container.appendChild(name);\n  container.appendChild(message);\n  chatPreviewElement.appendChild(container);\n  chatPreviewElement.appendChild(time);\n}\nfunction editChat() {\n  var chatList = document.querySelector('.chat-list');\n  var button = document.createElement('button');\n  button.classList.add('container-button-chat');\n  var lastChatId = chatList.lastElementChild.id;\n  var numberId = lastChatId.match(/\\d+/);\n  var currentNumber = parseInt(numberId[0], 10);\n  var nextNumber = currentNumber + 1;\n  var newId = lastChatId.replace(currentNumber, nextNumber);\n  console.log(newId);\n  button.id = newId;\n  chatList.appendChild(button);\n  displayLastMessage(\"chat\".concat(nextNumber), document.getElementById(newId));\n  var newChat = button.innerHTML;\n  localStorage.setItem(newId, newChat);\n}\ndocument.querySelector('.edit-button').addEventListener('click', function () {\n  return editChat();\n});\ndisplayLastMessage('chat1', document.getElementById('chat1Button'));\ndisplayLastMessage('chat2', document.getElementById('chat2Button'));\n\n//# sourceURL=webpack:///./js/lastMessage.js?");
 
 /***/ })
 

@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "f302ef8f2f137a257343";
+/******/ 	var hotCurrentHash = "e17a6a6b3b66ec6d405b";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -859,14 +859,26 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./index.css":
+/*!*******************!*\
+  !*** ./index.css ***!
+  \*******************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./index.css?");
+
+/***/ }),
+
 /***/ "./js/openChat.js":
 /*!************************!*\
   !*** ./js/openChat.js ***!
   \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("var headers = {\n  chat1: {\n    data: [{\n      src: \"https://img.freepik.com/premium-photo/confident-young-woman-with-curly-hair-in-casual-white-shirt-portrait-of-positivity-and-selfassura_1229340-2356.jpg\",\n      name: \"Даша Петрова\"\n    }]\n  },\n  chat2: {\n    data: [{\n      src: \"https://img.freepik.com/free-photo/front-view-smiley-man-outdoors-city_23-2148955558.jpg\",\n      name: \"Иван Иванов\"\n    }]\n  }\n};\nvar currentChatId = null;\nvar currentContainerId = null;\nvar chatListPage = document.getElementById('chat-list');\nvar chatPage = document.getElementById('chat-page');\nfunction openChatPage(chatId, containerId) {\n  document.getElementById('chat1-container').classList.remove('active');\n  document.getElementById('chat2-container').classList.remove('active');\n  var selectedChat = headers[chatId];\n  currentChatId = chatId;\n  currentContainerId = containerId;\n  selectedChat.data.forEach(function (header) {\n    var headerDiv = \"\\n            <div class=\\\"img-container\\\"><img src=\\\"\".concat(header.src, \"\\\" alt=\\\"\\\"> </div>\\n            <p><span class=\\\"person-name\\\">\").concat(header.name, \"</span> <br>\\u041E\\u043D\\u043B\\u0430\\u0439\\u043D </p> \\n        \");\n    document.querySelector('.main_header').insertAdjacentHTML('beforeend', headerDiv);\n  });\n  var savedMessages = localStorage.getItem(chatId);\n  var chatContainer = document.getElementById(containerId);\n  if (savedMessages) {\n    chatContainer.innerHTML = savedMessages;\n  }\n  document.getElementById(containerId).classList.add('active');\n  chatListPage.classList.add('hidden');\n  chatPage.classList.remove('hidden');\n  chatContainer.scrollTop = chatContainer.scrollHeight;\n  localStorage.setItem('activePage', 'chat');\n  localStorage.setItem('activeChat', chatId);\n}\n\n//# sourceURL=webpack:///./js/openChat.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.css */ \"./index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n\nvar headers = {\n  chat1: {\n    data: [{\n      src: \"https://img.freepik.com/premium-photo/confident-young-woman-with-curly-hair-in-casual-white-shirt-portrait-of-positivity-and-selfassura_1229340-2356.jpg\",\n      name: \"Даша Петрова\"\n    }]\n  },\n  chat2: {\n    data: [{\n      src: \"https://img.freepik.com/free-photo/front-view-smiley-man-outdoors-city_23-2148955558.jpg\",\n      name: \"Иван Иванов\"\n    }]\n  }\n};\nvar currentChatId = null;\nvar currentContainerId = null;\nvar chatListPage = document.getElementById('chat-list');\nvar chatPage = document.getElementById('chat-page');\nfunction openChatPage() {\n  document.getElementById('chat1-container').classList.remove('active');\n  document.getElementById('chat2-container').classList.remove('active');\n  currentChatId = localStorage.getItem('activeChat');\n  currentContainerId = \"\".concat(currentChatId, \"-container\");\n  var selectedChat = headers[currentChatId];\n  selectedChat.data.forEach(function (header) {\n    var headerDiv = \"\\n            <div class=\\\"img-container\\\"><img src=\\\"\".concat(header.src, \"\\\" alt=\\\"\\\"> </div>\\n            <p><span class=\\\"person-name\\\">\").concat(header.name, \"</span> <br>\\u041E\\u043D\\u043B\\u0430\\u0439\\u043D </p> \\n        \");\n    document.querySelector('.main_header').insertAdjacentHTML('beforeend', headerDiv);\n  });\n  var savedMessages = localStorage.getItem(currentChatId);\n  var chatContainer = document.getElementById(currentContainerId);\n  if (savedMessages) {\n    chatContainer.innerHTML = savedMessages;\n  }\n  document.getElementById(currentContainerId).classList.add('active');\n  chatContainer.scrollTop = chatContainer.scrollHeight;\n}\nwindow.addEventListener('DOMContentLoaded', function () {\n  return openChatPage();\n});\n\n//# sourceURL=webpack:///./js/openChat.js?");
 
 /***/ })
 
