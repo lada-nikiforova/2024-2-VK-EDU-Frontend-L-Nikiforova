@@ -61,18 +61,26 @@ function editChat(){
     const chatList = document.querySelector('.chat-list');
     const button = document.createElement('button');
     button.classList.add('container-button-chat');
-    const lastChatId = chatList.lastElementChild.id;
-    let numberId = lastChatId.match(/\d+/);
-    let currentNumber = parseInt(numberId[0], 10);  
-    let nextNumber = currentNumber + 1;
-    let newId = lastChatId.replace(currentNumber, nextNumber);
-    console.log(newId);
-    button.id = newId;
-    chatList.appendChild(button);
-    
-    displayLastMessage(`chat${nextNumber}`, document.getElementById(newId));
+    const keys = Object.keys(localStorage);
+    const chatKeys = keys.filter(key => key.startsWith('chat')&& key.endsWith('Button'));
+    if (chatKeys.length === 0) {
+        console.log(chatKeys);
+        button.id = 'chat3Button';
+        chatList.appendChild(button); 
+        displayLastMessage(`chat3`, document.getElementById('chat3Button'));
+        let newChat = button.innerHTML;
+        localStorage.setItem('chat3Button', newChat) ;
+        return;
+    }
+    const maxChatId = chatKeys
+        .map(key => parseInt(key.match(/\d+/)[0], 10)) 
+        .reduce((max, num) => Math.max(max, num), 0);  
+    let nextNumber = maxChatId + 1;
+    button.id = `chat${nextNumber}Button`;
+    chatList.appendChild(button);  
+    displayLastMessage(`chat${nextNumber}`, document.getElementById(`chat${nextNumber}Button`));
     let newChat = button.innerHTML;
-    localStorage.setItem(newId, newChat);
+    localStorage.setItem(`chat${nextNumber}Button`, newChat);
 }
     
 document.querySelector('.edit-button').addEventListener('click', () =>  editChat());
