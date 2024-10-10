@@ -13,10 +13,14 @@ module.exports = {
     context: SRC_PATH,
     entry: {
         index: './index.js',
+        lastMessage: './js/lastMessage.js',
+        openChat: './js/openChat.js', 
+        storage: './js/storageList.js',
+        button: './js/buttonChat.js'
     },
     output: {
         path: BUILD_PATH,
-        filename: 'bundle.js'
+        filename: '[name].bundle.js'
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'), 
@@ -81,7 +85,13 @@ module.exports = {
         }),
         new HTMLWebpackPlugin({
             filename: 'index.html',
-            template: './index.html'
+            template: './index.html',
+            chunks: ['index', 'openChat']
+        }),
+        new HTMLWebpackPlugin({
+            filename: 'pages.html',
+            template: './pages.html',
+            chunks: ['lastMessage', 'storage', 'button']
         })
     ]
 };

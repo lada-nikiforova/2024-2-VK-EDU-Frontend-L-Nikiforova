@@ -1,0 +1,29 @@
+.icon {
+    font-size: 48px; 
+    color: #ffffffad;
+}
+.main_header{
+    display: flex;
+    align-items: center;
+    height: 70px;
+    background-color: #686a77;
+    box-shadow: 0px 5px 10px  3px #120d14;
+    font-size: 20px;
+    line-height: 25px;
+    z-index: 1;
+}
+.img-container{
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.person-name{
+    font-weight: bold; 
+    color: #fff;
+    font-size: 28px;
+
+}
+
