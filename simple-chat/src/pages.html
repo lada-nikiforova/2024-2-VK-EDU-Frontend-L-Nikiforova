@@ -2,7 +2,7 @@
 <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
         <title>Document</title>
     </head>
@@ -13,13 +13,19 @@
                 <h1>Список чатов</h1>
                 <button class="icon-button"><span class="material-symbols-outlined icon">search</span></button>              
             </header>
-            <div class="chat-list">
-                <button id="chat1Button" class="container-button-chat">
-                </button>
-                <button id="chat2Button" class="container-button-chat">
-                </button>
+            <div class="list">
+
             </div>
             <button class="edit-button icon-button"><span class="material-symbols-outlined icon">edit</span></button>
+            <div class="modal hidden">
+                <button class="icon-button close-button"><span class="material-symbols-outlined icon close-modal">close</span></button>
+                <form class="form-container" action="/">
+                    <p class>С кем вы хотите создать чат?</p>
+                    <input class="form-text" name="text" placeholder="Введите имя собеседника" type="text">
+                </form>
+                <button class="button-create-chat">Создать чат</button>
+            </div>
+            <div class="overlay hidden"></div>
 
         </div>
         

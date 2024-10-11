@@ -59,4 +59,10 @@
 .container-message-person{
     display: flex;
     flex-direction: row;
+    animation: ani 1s forwards;
 }
+@keyframes ani {
+    0% {transform: translateX(-150%);}
+    100% {transform: translateX(0);}
+}
+
