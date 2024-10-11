@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "2bf36e0cd029694ebcd1";
+/******/ 	var hotCurrentHash = "3ad57b9a6f92e017275d";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -866,7 +866,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("document.querySelectorAll('.container-button-chat').forEach(function (button) {\n  button.addEventListener('click', function () {\n    window.location.href = 'index.html';\n    var buttonId = this.id;\n    var numberId = buttonId.match(/\\d+/);\n    var currentNumber = parseInt(numberId[0], 10);\n    localStorage.setItem('activeChat', \"chat\".concat(currentNumber));\n  });\n});\n\n//# sourceURL=webpack:///./js/buttonChat.js?");
+eval("document.querySelector('.list').addEventListener('click', function (event) {\n  if (event.target.closest('.container-button-chat')) {\n    var button = event.target.closest('.container-button-chat');\n    var chatId = button.id.replace('_Button', '');\n    var name = button.querySelector('.chat-name').innerText;\n    console.log(name);\n    localStorage.setItem('activePerson', name);\n    window.history.pushState({}, '', \"?chat_id=\".concat(chatId));\n    localStorage.setItem('activeChatId', chatId);\n    window.location.href = 'index.html';\n  }\n});\n\n//# sourceURL=webpack:///./js/buttonChat.js?");
 
 /***/ })
 
