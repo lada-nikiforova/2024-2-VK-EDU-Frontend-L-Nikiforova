@@ -10,14 +10,6 @@ function editChat(){
     const chatId = generateChatId();
     const namePerson = localStorage.getItem('activePerson');
     const time = new Date();
-    const newChat = {
-        name: namePerson,
-        messages: [],
-        lastMessage: "Сообщение отсутствует",
-        lastTime: time.getHours().toString().padStart(2, '0') + ':' + time.getMinutes().toString().padStart(2, '0'),
-    };
-
-    localStorage.setItem(chatId, JSON.stringify(newChat));
     const chatList = document.querySelector('.list');
     const chatButton = document.createElement('button');
     chatButton.classList.add('container-button-chat');
@@ -25,14 +17,12 @@ function editChat(){
     chatButton.innerHTML = `
         <div class="container-img"><img class="chat-img" src="https://img.freepik.com/premium-vector/user-profile-vector-illustration_1237743-44335.jpg?" alt="chat image"></div>
         <div class="chat-info">
-            <div class="chat-name">${newChat.name}</div>
-            <div class="chat-message">${newChat.lastMessage}</div>
+            <div class="chat-name">${namePerson}</div>
+            <div class="chat-message">Сообщение отсутствует</div>
         </div>
-        <div class="chat-time">${newChat.lastTime}</div>`;
+        <div class="chat-time"></div>`;
     chatList.appendChild(chatButton);
-    localStorage.setItem(`${chatId}_Button`, chatButton.innerHTML);
-
-    
+    localStorage.setItem(`${chatId}_Button`, chatButton.innerHTML);  
 }
     
 document.querySelector('.edit-button').addEventListener('click', function(){modal.classList.remove('hidden');overlay.classList.remove('hidden');});

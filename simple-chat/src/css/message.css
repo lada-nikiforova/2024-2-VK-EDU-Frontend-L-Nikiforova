@@ -32,6 +32,11 @@
     text-align: end;
     margin-bottom: 5px;
     font-weight: bold; 
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; 
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .name-p{
     color: #ffffff;
@@ -39,6 +44,7 @@
     text-align: start;
     margin-bottom: 5px;
     font-weight: bold; 
+    
 
 }
 .container-message{
@@ -48,17 +54,17 @@
     align-items: flex-end;
     margin-left: 60px;
 }
-
-.container-person{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.message-person{
+    
+    text-align: start;
 
 }
+
 .container-message-person{
     display: flex;
+    max-width: 80%;
     flex-direction: row;
+    /* align-items: flex-start; */
     animation: ani 1s forwards;
 }
 @keyframes ani {

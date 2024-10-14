@@ -8,19 +8,18 @@ function openChat(chatId) {
         chatContainer.innerHTML = savedMessages;
     }
 
-
-    console.log(chatData);
-
     const chat = document.querySelector('.chat');
 
-    const headerDiv = document.createElement('div');
-    headerDiv.classList.add('main_header');
-    headerDiv.innerHTML = `
+    const headerDiv = document.querySelector('.main_header');
+    headerDiv.insertAdjacentHTML( 'beforeend', `
         <div class="img-container"><img src="https://img.freepik.com/premium-vector/user-profile-vector-illustration_1237743-44335.jpg?" alt="chat image"></div>
-        <p><span class="person-name">${chatData}</span> <br>Онлайн </p>`;
-    chat.prepend(headerDiv);
+        <div class = "text-header"> <p class="person-name">${chatData}</p>
+        <p class = "status">Онлайн</p> </div>
+        `);
+    // headerDiv.append(headerDiv);
 
     chatContainer.scrollTop = chatContainer.scrollHeight;
+    
     
     
 }
@@ -34,4 +33,5 @@ document.addEventListener('DOMContentLoaded', function() {
         openChat(chatId);
     }
 });
+
 
