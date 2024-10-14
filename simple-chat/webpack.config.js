@@ -13,7 +13,7 @@ module.exports = {
     context: SRC_PATH,
     entry: {
         index: './index.js',
-        lastMessage: './js/lastMessage.js',
+        createChat: './js/createChat.js',
         openChat: './js/openChat.js', 
         storage: './js/storageList.js',
         button: './js/buttonChat.js'
@@ -26,6 +26,7 @@ module.exports = {
         contentBase: path.resolve(__dirname, 'dist'), 
         hot: true, 
         open: true, 
+        openPage: 'pages.html',
     },
     module: {
         strictExportPresence: true,
@@ -84,14 +85,15 @@ module.exports = {
             filename: 'style.css',
         }),
         new HTMLWebpackPlugin({
+            filename: 'pages.html',
+            template: './pages.html',
+            chunks: ['createChat', 'storage', 'button']
+        }),
+        new HTMLWebpackPlugin({
             filename: 'index.html',
             template: './index.html',
             chunks: ['index', 'openChat']
-        }),
-        new HTMLWebpackPlugin({
-            filename: 'pages.html',
-            template: './pages.html',
-            chunks: ['lastMessage', 'storage', 'button']
         })
+        
     ]
 };

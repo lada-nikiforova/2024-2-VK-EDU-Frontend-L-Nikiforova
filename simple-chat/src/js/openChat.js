@@ -1,46 +1,37 @@
 import '../index.css';
-const headers = {
-    chat1: {
-        data: [{
-            src: "https://img.freepik.com/premium-photo/confident-young-woman-with-curly-hair-in-casual-white-shirt-portrait-of-positivity-and-selfassura_1229340-2356.jpg",
-            name: "Даша Петрова"
-        }]
-        
-    },
-    chat2: {
-        data: [{
-            src: "https://img.freepik.com/free-photo/front-view-smiley-man-outdoors-city_23-2148955558.jpg",
-            name: "Иван Иванов"
-        }]
-        
-    }
-};
-let currentChatId = null;
-let currentContainerId = null;
-const chatListPage = document.getElementById('chat-list');
-const chatPage = document.getElementById('chat-page');
-function openChatPage() {
-    document.getElementById('chat1-container').classList.remove('active');
-    document.getElementById('chat2-container').classList.remove('active');
-    
 
-    currentChatId = localStorage.getItem('activeChat'); 
-    currentContainerId = `${currentChatId}-container`;
-    const selectedChat = headers[currentChatId];
-    selectedChat.data.forEach((header) => {
-        const headerDiv = `
-            <div class="img-container"><img src="${header.src}" alt=""> </div>
-            <p><span class="person-name">${header.name}</span> <br>Онлайн </p> 
-        `;
-        document.querySelector('.main_header').insertAdjacentHTML('beforeend', headerDiv);
-    });
-    const savedMessages = localStorage.getItem(currentChatId);
-    const chatContainer = document.getElementById(currentContainerId);
+function openChat(chatId) {
+    const chatData = localStorage.getItem('activePerson');
+    const chatContainer = document.querySelector('.container-chat');
+    const savedMessages = localStorage.getItem(chatId);
     if (savedMessages) {
         chatContainer.innerHTML = savedMessages;
     }
-    document.getElementById(currentContainerId).classList.add('active');
+
+    const chat = document.querySelector('.chat');
+
+    const headerDiv = document.querySelector('.main_header');
+    headerDiv.insertAdjacentHTML( 'beforeend', `
+        <div class="img-container"><img src="https://img.freepik.com/premium-vector/user-profile-vector-illustration_1237743-44335.jpg?" alt="chat image"></div>
+        <div class = "text-header"> <p class="person-name">${chatData}</p>
+        <p class = "status">Онлайн</p> </div>
+        `);
+    // headerDiv.append(headerDiv);
+
     chatContainer.scrollTop = chatContainer.scrollHeight;
+    
+    
+    
 }
 
-window.addEventListener('DOMContentLoaded', () => openChatPage());
+
+document.addEventListener('DOMContentLoaded', function() {
+    const chatId = localStorage.getItem('activeChatId');
+    window.history.pushState({}, '', `?chat_id=${chatId}`);
+    console.log(chatId);
+    if (chatId) {
+        openChat(chatId);
+    }
+});
+
+

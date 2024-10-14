@@ -1,8 +1,15 @@
 
-document.querySelectorAll('.container-button-chat').forEach(button=>{button.addEventListener( 'click', function(){
-    window.location.href = 'index.html';
-    const buttonId = this.id;
-    let numberId = buttonId.match(/\d+/);
-    let currentNumber = parseInt(numberId[0], 10);  
-    localStorage.setItem('activeChat', `chat${currentNumber}`);
-});});
+
+document.querySelector('.list').addEventListener('click', function (event) {
+    
+    if (event.target.closest('.container-button-chat')) {
+        const button = event.target.closest('.container-button-chat');
+        const chatId = button.id.replace('_Button', ''); 
+        const name = button.querySelector('.chat-name').innerText;
+        console.log(name);
+        localStorage.setItem('activePerson', name);
+        window.history.pushState({}, '', `?chat_id=${chatId}`);
+        localStorage.setItem('activeChatId', chatId);
+        window.location.href = 'index.html';
+    }
+});
