@@ -1,0 +1,42 @@
+.edit-button{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #686a77;
+    box-shadow: 0px 3px 10px  3px #120d14;
+    position: fixed; 
+    bottom: 15%;     
+    right: 20px; 
+}
+.edit-button:hover{
+    border-radius: 50%;
+    background: #c61bff;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(28,101,255, 0.4);
+    animation: pulse 2s infinite;
+}
+@-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(175,37,255, 0.4);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(137,52,255, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(28,101,255, 0);
+    }
+}
+@keyframes pulse {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(175,37,255, 0.4);
+      box-shadow: 0 0 0 0 rgba(175,37,255, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(137,52,255, 0);
+        box-shadow: 0 0 0 10px rgba(137,52,255, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(28,101,255, 0);
+        box-shadow: 0 0 0 0 rgba(28,101,255, 0);
+    }
+}
