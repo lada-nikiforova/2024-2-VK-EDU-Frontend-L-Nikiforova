@@ -1,35 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <title>Чат</title>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./src/assets/chat.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
 
-    <link href="style.css" rel="stylesheet"></head>
-    <body>
-        <div id="chat-page" class="page-chat">
-            
-            
-            <div class="chat">
-                <div class="main_header">
-                    <button class="icon-button list-button" ><span class="material-symbols-outlined icon">arrow_back</span></button>
-                </div>
-                <!--  <div class="main_header">
-                    <div class="img-container"><img  src="https://img.freepik.com/premium-photo/confident-young-woman-with-curly-hair-in-casual-white-shirt-portrait-of-positivity-and-selfassura_1229340-2356.jpg" alt=""></div>
-                    <p><span class="person-name">Дарья Петрова</span> <br>Онлайн </p>     
-                </div>  -->
-                <div class="container-chat"></div>
-                <!-- <div id="chat2-container" class="container-chat"></div>  -->
-                <div class="lower">
-                    <button class="icon-button"> <span class="material-symbols-outlined icon">sentiment_satisfied</span></button>
-                    <form class="form" action="/">
-                        <input class="form-input" name="message-text" placeholder="Введите сообщение..." type="text">
-                    </form>
-                    <button class="send icon-button"><span class="material-symbols-outlined icon">send</span></button> 
-                </div>
-            </div>
-        </div>
-        
-    <script type="text/javascript" src="index.bundle.js"></script><script type="text/javascript" src="openChat.bundle.js"></script></body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
