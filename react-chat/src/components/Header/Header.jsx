@@ -1,12 +1,12 @@
 import { useEffect, useState} from 'react';
 import './Header.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import {activePerson } from '../../constant';
 const Header = ({ onBack }) => {
     // const chatData = localStorage.getItem('activePerson')
     const [chat, setChat] = useState('');
     useEffect(()=>{
-        const chatData = localStorage.getItem('activePerson');
+        const chatData = localStorage.getItem(activePerson);
         setChat(chatData);
     }, []);
     const onClickChatList = () =>{

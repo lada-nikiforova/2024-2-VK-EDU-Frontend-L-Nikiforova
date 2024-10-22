@@ -1,13 +1,14 @@
 import {useState, useEffect} from 'react';
 import './InputForm.scss';
 import  SendIcon from '@mui/icons-material/Send';
-import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied'
+import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
+import {activePerson} from '../../constant';
 
 const InputForm = ({onAddMessage}) => {
     const [message, setMessage] = useState('');
     const [name, setName] = useState(''); 
     useEffect(()=>{
-        const chatData = localStorage.getItem('activePerson');
+        const chatData = localStorage.getItem(activePerson);
         setName(chatData);
     }, []);
     
@@ -43,7 +44,7 @@ const InputForm = ({onAddMessage}) => {
         <div className="lower">
                 <button className="icon-button"> <SentimentSatisfiedIcon sx={{ fontSize: 40 }} className="icon"/></button>
                 <form className="form" action="/" onSubmit={createMessage}>
-                    <input className="form-input" name="message-text" placeholder="Введите сообщение..." type="text" value={message} onChange={(e) => setMessage(e.target.value)} required/>
+                    <input className="form-input" name="message-text" placeholder="Введите сообщение..." type="text" value={message} onChange={(e) => setMessage(e.target.value)} required autoComplete="off"/>
                 </form>
             <button className="send icon-button"><SendIcon sx={{ fontSize: 40 }} className="icon" onClick={createMessage} /></button> 
         </div>

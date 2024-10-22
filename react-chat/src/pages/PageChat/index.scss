@@ -16,11 +16,15 @@ body {
     
     
 }
-
+.icon-button{
+    display: flex;
+    align-items: center;
+}
 button{
     border: none;
     background-color: transparent;
     cursor: pointer;
+    
 }
 img{
     width: 60px;

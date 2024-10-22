@@ -5,6 +5,7 @@ import ChatList from "../../components/ChatList/ChatList";
 import Footer from "../../components/Footer/Footer";
 import EditButton from '../../components/EditButton/EditButton';
 import Modal from '../../components/Modal/Modal';
+import { activeChatId, activePerson, chats } from '../../constant';
 
 const PageChatList = ({onBack}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +18,7 @@ const PageChatList = ({onBack}) => {
     };
     
     useEffect(()=>{
-        const loadChats = JSON.parse(localStorage.getItem('chats'))||[];
+        const loadChats = JSON.parse(localStorage.getItem(chats))||[];
         console.log(loadChats);
         setChat(loadChats);
     }, []);
@@ -25,13 +26,13 @@ const PageChatList = ({onBack}) => {
         const updatedChat = [...chat, newChat];
         console.log(updatedChat);
         setChat(updatedChat);
-        localStorage.setItem('chats', JSON.stringify(updatedChat));
+        localStorage.setItem(chats, JSON.stringify(updatedChat));
         closeModal();
     }
     const chatClick = (chatId, name) =>{
         console.log(chatId, name);
-        localStorage.setItem('activeChatId', chatId);
-        localStorage.setItem('activePerson', name);
+        localStorage.setItem(activeChatId, chatId);
+        localStorage.setItem(activePerson, name);
         window.history.pushState({}, '', `?chat_id=${chatId}`);
         
     }
