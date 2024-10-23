@@ -30,3 +30,10 @@ input {
     display: inline-block;
     
 }
+// .form-input::placeholder {
+//     color: gray; /* стандартный цвет */
+//   }
+  
+.form-input.error::placeholder {
+    color: red; /* цвет плейсхолдера при ошибке */
+}
