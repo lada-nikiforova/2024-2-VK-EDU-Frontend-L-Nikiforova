@@ -1,0 +1,44 @@
+html {
+    box-sizing: border-box;
+    
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+body {
+    margin: 0;
+    background-color: #fff;
+    
+    
+}
+.icon-button{
+    display: flex;
+    align-items: center;
+}
+button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    
+}
+img{
+    width: 60px;
+}
+.icon-button:hover, .icon-button:focus, .icon-button:active {
+    transform: scale(1.1);
+    transition: transform 0.6s;
+}
+.chat{
+    height: 100vh;
+    width: 100vw;
+    background-color: #2e2e39;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
