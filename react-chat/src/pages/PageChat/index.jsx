@@ -6,9 +6,11 @@ import InputForm from '../../components/InputForm/InputForm.jsx';
 import { activeChatId } from '../../constant';
 
 
-const PageChat = ({ onBack }) => {
+
+const PageChat = () => {
     
     const [message, setMessage] = useState([]);
+    // let {id} = useParams();
     
     const activeChat = localStorage.getItem(activeChatId);
     
@@ -27,7 +29,7 @@ const PageChat = ({ onBack }) => {
 
     return (
         <div id="chat-page" className="chat">
-            <Header onBack={onBack} />
+            <Header/>
             <ContainerChat message={message}/>
             <InputForm onAddMessage={addMessage}/>
         </div>

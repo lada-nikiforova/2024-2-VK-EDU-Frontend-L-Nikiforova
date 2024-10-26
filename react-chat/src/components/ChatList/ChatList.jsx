@@ -3,7 +3,7 @@ import './ChatList.scss';
 
 
 
-const ChatList = ({chat, onChatClick, onBack}) => {
+const ChatList = ({chat, onChatClick}) => {
     const getLastMessage = (chatId) => {
         const messages = JSON.parse(localStorage.getItem(chatId)) || [];
         if (messages.length > 0) {
@@ -23,7 +23,7 @@ const ChatList = ({chat, onChatClick, onBack}) => {
             {chat.map(button=>{
                 const { message, time } = getLastMessage(button.id);
                 return(
-                <button key={button.id} id={button.id} className='container-button-chat' onClick={()=>{onChatClick(button.id, button.name); onBack()}}>
+                <button key={button.id} id={button.id} className='container-button-chat' onClick={()=>{onChatClick(button.id, button.name);}}>
                     <div className="container-img"><img className="chat-img" src="https://img.freepik.com/premium-vector/user-profile-vector-illustration_1237743-44335.jpg?" alt="chat image"/></div>
                     <div className="chat-info">
                         <div className="chat-name">{button.name}</div>

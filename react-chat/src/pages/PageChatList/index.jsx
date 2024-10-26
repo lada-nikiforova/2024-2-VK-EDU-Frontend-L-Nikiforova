@@ -6,10 +6,14 @@ import Footer from "../../components/Footer/Footer";
 import EditButton from '../../components/EditButton/EditButton';
 import Modal from '../../components/Modal/Modal';
 import { activeChatId, activePerson, chats } from '../../constant';
+import { useNavigate } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
 
-const PageChatList = ({onBack}) => {
+const PageChatList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [chat, setChat] = useState([]);
+    const navigate = useNavigate();
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -33,13 +37,13 @@ const PageChatList = ({onBack}) => {
         console.log(chatId, name);
         localStorage.setItem(activeChatId, chatId);
         localStorage.setItem(activePerson, name);
-        window.history.pushState({}, '', `?chat_id=${chatId}`);
+        navigate(`${chatId}`);
         
     }
     return (
         <div id="chat-list" className="page-list"> 
-            <HeaderChatList />
-            <ChatList chat={chat} onChatClick={chatClick} onBack={onBack}/>
+            <HeaderChatList title="Список чатов" leftIcon={MenuIcon} rightIcon={SearchIcon}/>
+            <ChatList chat={chat} onChatClick={chatClick}/>
             <Footer />
             <EditButton onClick={openModal} />
             <Modal isOpen={isModalOpen} onClose={closeModal} onAddChat={addChat}/>

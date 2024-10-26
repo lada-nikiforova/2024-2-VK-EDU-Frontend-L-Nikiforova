@@ -1,14 +1,13 @@
 import React from 'react';
 import './HeaderChatList.scss';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 
-const HeaderChatList = () => {
+
+const HeaderChatList = ({title, leftIcon: LeftIcon, rightIcon: RightIcon, onRightIconClick}) => {
     return (
         <header className="header">
-            <button className="icon-button" ><MenuIcon sx={{ fontSize: 40 }} className='icon'/></button>
-            <h1>Список чатов</h1>
-            <button className="icon-button" ><SearchIcon sx={{ fontSize: 40 }} className='icon'/></button>            
+            <button className="icon-button" >{LeftIcon && <LeftIcon sx={{ fontSize: 40 }} className='icon' />}</button>
+            <h1>{title}</h1>
+            <button className="icon-button" >{RightIcon && <RightIcon sx={{ fontSize: 40 }} className='icon' onClick={onRightIconClick} />}</button>            
         </header>
     );
 }
