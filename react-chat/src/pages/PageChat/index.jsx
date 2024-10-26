@@ -8,12 +8,8 @@ import { activeChatId } from '../../constant';
 
 
 const PageChat = () => {
-    
     const [message, setMessage] = useState([]);
-    // let {id} = useParams();
-    
     const activeChat = localStorage.getItem(activeChatId);
-    
     useEffect(()=>{
         const loadMessages = JSON.parse(localStorage.getItem(activeChat))||[];
         setMessage(loadMessages);

@@ -36,7 +36,7 @@ const InputForm = ({onAddMessage}) => {
                 
                 // Обновляем объект сообщения, добавляя ответ
                 onAddMessage({ ...newMessage,  ...newAnswer });
-            }, 1200);
+            }, 400);
             setMessage('');
             setError(false);
 
