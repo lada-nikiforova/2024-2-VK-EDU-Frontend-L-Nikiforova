@@ -4,8 +4,24 @@
     margin-bottom: 20px;
     color: white;
 }
-textarea{
+.input-profile{
     border-radius: 20px;
     padding: 10px;
+    width: 400px;
     resize: none;
+}
+textarea{
+    font: inherit;
+}
+textarea::-webkit-scrollbar {
+    width: 12px;             
+}
+textarea::-webkit-scrollbar-thumb {
+    background-color: #0a090967;   
+    border-radius: 20px;       
+    border: none;    
+    overflow: auto;
+}
+textarea:focus{
+    outline: none;
 }

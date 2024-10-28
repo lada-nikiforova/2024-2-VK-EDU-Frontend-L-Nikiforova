@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './App.css';
 import PageChat from './pages/PageChat/index.jsx';
 import PageChatList from './pages/PageChatList/index.jsx';
@@ -9,7 +8,7 @@ const App = () => {
   return (
     <HashRouter>
       <Routes>
-        <Route path='/:id' Component={PageChat}/>
+        <Route path='/chat/:id' Component={PageChat}/>
         <Route path='/' Component={PageChatList}/>
         <Route path='/profile' Component={PageProfile}/>
       </Routes>

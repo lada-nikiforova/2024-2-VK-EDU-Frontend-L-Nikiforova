@@ -1,11 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './index.scss';
-import Header from '../../components/Header/Header.jsx';
+import {HeaderChat} from '../../components/Header';
 import ContainerChat from '../../components/Chat/ContainerChat.jsx';
 import InputForm from '../../components/InputForm/InputForm.jsx';
 import { activeChatId } from '../../constant';
-
-
 
 const PageChat = () => {
     const [message, setMessage] = useState([]);
@@ -25,7 +23,7 @@ const PageChat = () => {
 
     return (
         <div id="chat-page" className="chat">
-            <Header/>
+            <HeaderChat/>
             <ContainerChat message={message}/>
             <InputForm onAddMessage={addMessage}/>
         </div>
