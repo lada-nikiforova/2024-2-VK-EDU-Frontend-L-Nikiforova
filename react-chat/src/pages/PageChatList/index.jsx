@@ -1,13 +1,14 @@
 import React,  { useEffect, useState } from 'react';
 import './index.scss';
-import HeaderChatList from "../../components/HeaderChatList/HeaderChatList";
 import ChatList from "../../components/ChatList/ChatList";
 import Footer from "../../components/Footer/Footer";
 import EditButton from '../../components/EditButton/EditButton';
 import Modal from '../../components/Modal/Modal';
 import { activeChatId, activePerson, chats } from '../../constant';
+import { HeaderChatList } from '../../components/Header';
 
-const PageChatList = ({onBack}) => {
+
+const PageChatList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [chat, setChat] = useState([]);
     const openModal = () => {
@@ -33,13 +34,11 @@ const PageChatList = ({onBack}) => {
         console.log(chatId, name);
         localStorage.setItem(activeChatId, chatId);
         localStorage.setItem(activePerson, name);
-        window.history.pushState({}, '', `?chat_id=${chatId}`);
-        
     }
     return (
         <div id="chat-list" className="page-list"> 
             <HeaderChatList />
-            <ChatList chat={chat} onChatClick={chatClick} onBack={onBack}/>
+            <ChatList chat={chat} onChatClick={chatClick}/>
             <Footer />
             <EditButton onClick={openModal} />
             <Modal isOpen={isModalOpen} onClose={closeModal} onAddChat={addChat}/>

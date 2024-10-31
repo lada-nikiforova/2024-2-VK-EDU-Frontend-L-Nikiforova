@@ -10,3 +10,9 @@
     bottom: 0;
 
 }
+
+.active{
+    border-radius: 50%;
+    outline: 2px solid rgba(255, 255, 255, 0.3607843137);
+    outline-offset: 6px;
+}

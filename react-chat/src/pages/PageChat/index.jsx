@@ -1,17 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './index.scss';
-import Header from '../../components/Header/Header.jsx';
+import {HeaderChat} from '../../components/Header';
 import ContainerChat from '../../components/Chat/ContainerChat.jsx';
 import InputForm from '../../components/InputForm/InputForm.jsx';
 import { activeChatId } from '../../constant';
 
-
-const PageChat = ({ onBack }) => {
-    
+const PageChat = () => {
     const [message, setMessage] = useState([]);
-    
     const activeChat = localStorage.getItem(activeChatId);
-    
     useEffect(()=>{
         const loadMessages = JSON.parse(localStorage.getItem(activeChat))||[];
         setMessage(loadMessages);
@@ -27,7 +23,7 @@ const PageChat = ({ onBack }) => {
 
     return (
         <div id="chat-page" className="chat">
-            <Header onBack={onBack} />
+            <HeaderChat/>
             <ContainerChat message={message}/>
             <InputForm onAddMessage={addMessage}/>
         </div>
