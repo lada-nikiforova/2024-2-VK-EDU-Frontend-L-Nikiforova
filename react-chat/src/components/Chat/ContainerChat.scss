@@ -4,7 +4,6 @@
     flex-direction: column;
     overflow: auto;
     padding: 20px 20px 10px 10px; 
-    text-align: end;
 
 }
 .container-chat::-webkit-scrollbar {
@@ -26,28 +25,22 @@
     color: #120d14;
     font-size: 20px;
     line-height: 24px;
-    text-align: start;
     hyphens: auto;
     word-break: break-word;
-    
+    text-align: center;
 }
-.message-p{
+.person{
     background-color: #c3b1bd;
-}
+} 
+
 .time{
     color: #ffffff9f;
     font-size: 13px;
-    text-align: end;
 }
-.time-p{
-    color: #ffffff9f;
-    font-size: 13px;
-    text-align: start;
-}
+
 .name{
     color: #ffffff;
     font-size: 20px;
-    text-align: end;
     margin-bottom: 5px;
     font-weight: bold; 
     display: -webkit-box;
@@ -57,36 +50,36 @@
     overflow: hidden;
     max-width: 300px;
 }
-.name-p{
-    color: #ffffff;
-    font-size: 20px;
-    text-align: start;
-    margin-bottom: 5px;
-    font-weight: bold; 
-    
-    
 
-}
 .container-message{
     margin-bottom: 10px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-left: 60px;
-}
-.message-person{
-    
-    text-align: start;
-
-}
-
-.container-message-person{
-    display: flex;
     max-width: 80%;
-    flex-direction: row;
-    animation: ani 1300ms forwards;
 }
+
+
 @keyframes ani {
     0% {transform: translateX(-150%);}
     100% {transform: translateX(0);}
 }
+
+.my-message {
+    align-self: flex-end;
+    text-align: right;
+    margin-left: 60px;
+}
+
+.other-message {
+    align-self: flex-start;
+    text-align: left;
+    animation: ani 1300ms forwards;
+}
+
+.message-content {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+

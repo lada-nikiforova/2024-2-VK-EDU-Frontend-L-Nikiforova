@@ -2,41 +2,27 @@ import {useState, useEffect} from 'react';
 import './InputForm.scss';
 import  SendIcon from '@mui/icons-material/Send';
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
-import {activePerson} from '../../constant';
+import {activeChatId, activePerson} from '../../constant';
+import { saveMessage } from '../../api/apiMessage';
 
 const InputForm = ({onAddMessage}) => {
     const [message, setMessage] = useState('');
     const [name, setName] = useState(''); 
     const [error, setError] = useState(false);
-    useEffect(()=>{
-        const chatData = localStorage.getItem(activePerson);
-        setName(chatData);
-    }, []);
-    
-    const createMessage = (event) => {
+    const chatData = localStorage.getItem(activePerson);
+    const chatId = localStorage.getItem(activeChatId);
+
+    const createMessage = async(event) => {
         event.preventDefault(); 
         if(message.trim().length){
-            const time = new Date();
-            const timeElement = time.getHours().toString().padStart(2, '0') + ':' + time.getMinutes().toString().padStart(2, '0');
-            
             const newMessage = {
-                id: time,
-                message: message,
-                time: timeElement,
-                
+                text: message,
+                chat: chatId, 
             };
-            
+            // const savedMessage = await saveMessage(newMessage);
+            // console.log(savedMessage);
             onAddMessage(newMessage);
-            setTimeout(() => {
-                const newAnswer = {
-                    name_a: name,
-                    message_a: 'Ответ', 
-                    time_a: new Date().getHours().toString().padStart(2, '0') + ':' + new Date().getMinutes().toString().padStart(2, '0')
-                };
-                
-                // Обновляем объект сообщения, добавляя ответ
-                onAddMessage({ ...newMessage,  ...newAnswer });
-            }, 400);
+            
             setMessage('');
             setError(false);
 

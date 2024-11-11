@@ -1,0 +1,75 @@
+.auth-container{
+	width: 320px;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title{
+    color: #fff;
+	margin-bottom: 5px;
+	text-align: center;
+	
+}
+#signin {
+	width: 320px;
+	border-radius: 8px;
+	position: relative;
+}
+#signin input:first-of-type{
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+}
+#signin input:last-of-type{
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	margin-bottom: 10px;
+}
+#signin  input[type="text"], #signin  input[type="password"], #signin button[type="submit"]{
+	background: rgb(28, 30, 33);
+	color: rgb(255, 255, 255);
+	
+}
+#signin  input[type="text"], #signin  input[type="password"]{
+	position: relative;
+	display: block;
+	height: 45px;
+	border: 0;
+	outline: 0;
+	top: -2px;
+	padding: 0 0 0 20px;
+	font-weight: 700;
+}
+#signin  input[type="text"]:focus, #signin  input[type="password"]:focus{
+	color: rgb(255, 255, 255);
+}
+#signin button[type="submit"]{
+	width: 320px;
+	border-radius: 8px;
+	font-weight: 700;
+	color:  #c61bff;;
+	text-align: center;
+	padding: 8px;
+
+}
+#signin button[type="submit"]:hover{
+	// color: rgb(0, 126, 165);
+	text-shadow: 0 0 10px rgb(0, 126, 165);
+	cursor: pointer;
+}
+#signin {
+	p {
+		color: rgb(79, 85, 97);;
+		text-align: center;
+		font-weight: 700;
+		margin: 5px 0 0 0;
+		>a {
+			color: rgb(111, 119, 135);
+			text-decoration: none;
+			&:hover {
+				border-bottom: 1px solid;
+			}
+		}
+	}
+}
