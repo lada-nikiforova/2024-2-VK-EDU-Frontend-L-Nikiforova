@@ -27,10 +27,12 @@
     line-height: 24px;
     hyphens: auto;
     word-break: break-word;
-    text-align: center;
+    max-width: fit-content;
+    align-self: flex-end;
 }
 .person{
     background-color: #c3b1bd;
+    align-self: flex-start;
 } 
 
 .time{

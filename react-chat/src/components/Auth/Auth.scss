@@ -17,18 +17,12 @@
 	border-radius: 8px;
 	position: relative;
 }
-#signin input:first-of-type{
-	border-top-right-radius: 8px;
-	border-top-left-radius: 8px;
-}
-#signin input:last-of-type{
-	border-bottom-right-radius: 8px;
-	border-bottom-left-radius: 8px;
-	margin-bottom: 10px;
-}
+
 #signin  input[type="text"], #signin  input[type="password"], #signin button[type="submit"]{
 	background: rgb(28, 30, 33);
 	color: rgb(255, 255, 255);
+	margin-bottom: 15px;
+	border-radius: 8px;
 	
 }
 #signin  input[type="text"], #signin  input[type="password"]{
@@ -58,7 +52,7 @@
 	text-shadow: 0 0 10px rgb(0, 126, 165);
 	cursor: pointer;
 }
-#signin {
+#signin{
 	p {
 		color: rgb(79, 85, 97);;
 		text-align: center;
@@ -72,4 +66,10 @@
 			}
 		}
 	}
+	.error{
+		margin-bottom: 15px;
+		color: red;
+	}
+
 }
+

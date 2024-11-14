@@ -11,9 +11,22 @@ const Register = () => {
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
     const [bio, setBio] = useState('');
+    const [serverErrors, setServerErrors] = useState({});
 
 
-
+    const handleUsername = (e) => {
+        setUsername(e.target.value);
+        if (e.target.value.trim()){
+            setServerErrors('');
+        }
+    };
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+        if (e.target.value.trim()){
+            setServerErrors('');
+        }
+    };
+    
     const handleRegister = async (e) => {
         e.preventDefault();
         const userData = {
@@ -27,7 +40,11 @@ const Register = () => {
             await register(userData);
             navigate('/auth');
         } catch (error) {
-            alert('Ошибка регистрации');
+            if (error.response && error.response.data) {
+                setServerErrors(error.response.data); 
+            } else {
+                alert('Ошибка регистрации');
+            }
         }  
     };
 
@@ -38,8 +55,10 @@ const Register = () => {
         <div className="auth-container">
             <h1 className='title'>Регистрация</h1>
             <form id='signin' onSubmit={handleRegister}>
-                <input type="text" placeholder='Имя пользователя' name='username' value={username} onChange={(e) => setUsername(e.target.value)} required/>
-                <input type="password" placeholder='Пароль' name='password' value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                <input type="text" placeholder='Имя пользователя' name='username' value={username} onChange={handleUsername} required/>
+                {serverErrors.username && <p className="error">{serverErrors.username}</p>}
+                <input type="password" placeholder='Пароль' name='password' value={password} onChange={handlePassword} required/>
+                {serverErrors.password  && <p className="error">{serverErrors.password}</p>}              
                 <input type="text" placeholder='Имя' name='first_name' value={first_name} onChange={(e) => setFirstName(e.target.value)} required/>
                 <input type="text" placeholder='Фамилия' name='last_name' value={last_name} onChange={(e) => setLastName(e.target.value)} required/>
                 <input type="text" placeholder='О себе' name='bio' value={bio} onChange={(e) => setBio(e.target.value)} />
@@ -51,4 +70,3 @@ const Register = () => {
 };
 
 export default Register;
-// {error && <p className="error">{error}</p>}
