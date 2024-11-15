@@ -6,46 +6,46 @@ import { createNewChat } from '../../api/apiChat';
 
 
 const Modal = ({ isOpen, onClose, onAddChat}) => {
-    const [namePerson, setNamePerson] = useState(''); 
     const [error, setError] = useState(false);
-    const [nameChat, setNameChat] = useState();
+    const [data, setData] = useState({});
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value.trim();
+        setError(false);
+        setData({ ...data, [name]: value });    
+    }
      
     const createChat = async (event) => {
         event.preventDefault(); 
-        if (namePerson.trim().length){
-            const newChat = await createNewChat(namePerson, nameChat);
+        try {
+            const newChat = await createNewChat(data.id, data.title);
+            console.log(data);
             onAddChat(newChat);
-            setNameChat('');
-            setNamePerson('');
             setError(false);
-            onClose();
-        }
-        else {
+            onClose;
+        } catch (error) {
             setError(true);
-            isOpen();
-            setNamePerson('');
-            setNameChat('');
+            isOpen;
         }
-        
     };
 
     
     return (
         <>
             <div className={`modal ${isOpen ? '' : 'hidden'}`} >
-                <div className='container-close'><button className="icon-button" onClick={()=>{setError(false); onClose();}}>
+                <div className='container-close'><button className="icon-button" onClick={()=>{setError(false); onClose;}}>
                     <CloseIcon sx={{ fontSize: 40 }} className="icon close-icon" />
                 </button></div>
                 
                 <form className="form-container"  onSubmit={createChat}>
                     <label>С кем вы хотите создать чат?</label>
-                    <input className="form-text" name="text" placeholder="Введите id собеседника" type="text" value={namePerson} onChange={(e) => setNamePerson(e.target.value)} required autoComplete="off"/>
-                    <input className="form-text" name="text" placeholder="Введите имя чата" type="text" value={nameChat} onChange={(e) => setNameChat(e.target.value)} autoComplete="off"/>
+                    <input className="form-text" name="id" placeholder="Введите id собеседника" type="text" value={data.id} onChange={handleChange} required autoComplete="off"/>
+                    <input className="form-text" name="title" placeholder="Введите имя чата" type="text" value={data.title} onChange={handleChange} autoComplete="off"/>
                 </form>
                 {error && <p className="error-text">Введите id собеседника.</p>}
                 <button onClick={createChat} className="button-create-chat">Создать чат</button>
             </div>
-            <div className={`overlay ${isOpen ? '' : 'hidden'}`} onClick={()=>{setError(false); onClose();}}></div>
+            <div className={`overlay ${isOpen ? '' : 'hidden'}`} onClick={()=>{setError(false); onClose;}}></div>
         </>
     );
 }
