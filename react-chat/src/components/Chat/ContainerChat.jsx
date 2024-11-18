@@ -8,7 +8,11 @@ const ContainerChat = ({message}) => {
     const myUsername = JSON.parse(localStorage.getItem(profile)).username;
     useEffect(() => {
         bottomRef.current.scrollTop = bottomRef.current.scrollHeight;   
-      }, [message]);
+      }, []);
+    const isUrl = (text) => {
+        const urlPattern = /https?:\/\/[^\s]+/g;
+        return urlPattern.test(text);
+    };
     return (
         <div ref={bottomRef} className="container-chat">          
                 {message.map((mes) => (    
@@ -20,7 +24,14 @@ const ContainerChat = ({message}) => {
                             <div className="name">
                                 {mes.sender.id === userId ? myUsername : mes.sender.username}
                             </div>
-                            <div className={`message ${mes.sender.id === userId ? '' : 'person'}`}>{mes.text}</div>
+                            <div className={`message ${mes.sender.id === userId ? '' : 'person'}`}>
+                                {isUrl(mes.text) ? (
+                                    <a href={mes.text} target="_blank" rel="noopener noreferrer">
+                                        {mes.text}
+                                    </a>
+                                ) : (
+                                    mes.text
+                                )}</div>
                             <div className="time">
                                 {new Date(mes.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </div>
