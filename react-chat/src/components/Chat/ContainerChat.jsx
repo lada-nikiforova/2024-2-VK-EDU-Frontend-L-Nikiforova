@@ -21,7 +21,7 @@ const ContainerChat = ({message}) => {
                             <div className="img-container"><img className="img-icon" src="https://img.freepik.com/premium-vector/user-profile-vector-illustration_1237743-44335.jpg?"/></div>
                         )}
                         <div className= {`message-content`}>
-                            <div className="name">
+                            <div className={`name ${mes.sender.id === userId ? '' : 'name__person'}`}>
                                 {mes.sender.id === userId ? myUsername : mes.sender.username}
                             </div>
                             <div className={`message ${mes.sender.id === userId ? '' : 'person'}`}>

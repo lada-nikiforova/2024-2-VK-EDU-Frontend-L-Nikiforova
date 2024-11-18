@@ -52,6 +52,9 @@
     overflow: hidden;
     max-width: 300px;
     align-self: flex-end;
+    &__person{
+        align-self: flex-start;
+    }
 }
 
 .container-message{
