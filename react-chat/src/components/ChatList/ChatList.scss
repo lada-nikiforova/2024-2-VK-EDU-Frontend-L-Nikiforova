@@ -66,6 +66,9 @@
     text-overflow: ellipsis;
     overflow: hidden;
     word-break: break-word; 
+    p{
+        margin: 0;
+    }
 }
 
 .chat-time{
@@ -80,3 +83,4 @@
     height: 92%;
     max-width: 100%;
 }
+

@@ -27,7 +27,7 @@ input {
 .form {
     
     width: 100%;
-    display: inline-block;
+    display: flex;
     
 }
   
@@ -65,4 +65,18 @@ input {
 
 .attachment-menu button:hover {
     background-color: #f0f0f0;
+}
+
+.recording{
+    color: red;
+    animation: record 2s infinite;
+}
+
+@keyframes record {
+    50% {
+        font-size: 45px;
+    }
+    100% {
+        font-size: 40px;
+    }
 }

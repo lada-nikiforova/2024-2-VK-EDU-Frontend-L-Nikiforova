@@ -11,7 +11,7 @@ export const HeaderChat = ({chat}) => {
             <Link to={"/"}>
                 <ArrowBackIcon sx={{ fontSize: 40 }} className='icon'/>
             </Link>   
-            <div className="img-container"><img src={chat.avatar || defaultAvatar} alt="chat image"/></div>
+            <div className="img-container"><img className='img-header' src={chat.avatar || defaultAvatar} alt="chat image"/></div>
             <div className = "text-header"> <p className="person-name">{chat.title}</p>
             <p className = "status">Онлайн</p> </div>
         </div>
