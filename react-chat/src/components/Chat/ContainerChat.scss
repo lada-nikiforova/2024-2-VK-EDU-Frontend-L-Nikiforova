@@ -14,7 +14,9 @@
     border-radius: 20px;       
     border: none  
 }
-
+.img-icon{
+    width: 60px;
+}
 .message {
     display: inline-block;
     margin-bottom: 8px;
@@ -29,6 +31,16 @@
     word-break: break-word;
     max-width: fit-content;
     align-self: flex-end;
+}
+.message-files {
+    display: flex;
+    flex-direction: column;
+}
+.message-image{
+    max-width: 300px; 
+    max-height: 300px; 
+    object-fit: contain;
+    margin: 10px 0;  
 }
 .person{
     background-color: #c3b1bd;
@@ -51,6 +63,10 @@
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 300px;
+    align-self: flex-end;
+    &__person{
+        align-self: flex-start;
+    }
 }
 
 .container-message{
@@ -78,7 +94,7 @@
 }
 
 .message-content {
-    max-width: 300px;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
 }

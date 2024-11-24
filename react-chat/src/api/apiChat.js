@@ -8,12 +8,7 @@ export const getChat = async (id) => {
 
 export const getAllChats = async () => {
     const { data } = await apiClient.get("/api/chats/");
-    return data.results.map(chat => ({
-        id: chat.id,
-        title: chat.title,
-        lastMessage: chat.last_message?.text,
-        lastMessageTime: chat.updated_at,
-    }));
+    return data.results;
 };
 
 

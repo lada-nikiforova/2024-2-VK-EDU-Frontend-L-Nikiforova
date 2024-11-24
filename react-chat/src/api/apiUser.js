@@ -7,9 +7,9 @@ export const getCurrentUser = async () => {
     localStorage.setItem(profile, JSON.stringify(data));
     return data;
 };
-export const updateUser = async (id, userData) => {
+export const updateUser = async (id, formData) => {
     try {
-        const { data } = await apiClient.patch(`/api/user/${id}/`, userData);
+        const { data } = await apiClient.patch(`/api/user/${id}/`, formData);
         return data;
     } catch (error) {
         if (error.response && error.response.data && error.response.data.username) {
