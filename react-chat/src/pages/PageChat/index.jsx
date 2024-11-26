@@ -7,18 +7,24 @@ import { activeChatId, profile } from '../../constant';
 import { getAllMessages, saveMessage } from '../../api/apiMessage';
 import { getAllChats, getChat } from '../../api/apiChat';
 import { showNotification } from '../../notification';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMessages, setMessages } from '../../store/slices/messagesSlice';
+import { setChat } from '../../store/slices/chatSlice';
 
 const PageChat = () => {
     const [message, setMessage] = useState([]);
     const [newMessage, setNewMessage] = useState(null);
-    const [chat, setChat] = useState([]);
+    // const [chat, setChat] = useState([]);
     const activeChat = localStorage.getItem(activeChatId);
     const [isNewMessage, setIsNewMessage] = useState(false);
     const lastMessage = useRef({});
+    const messages = useSelector((state) => state.messages.messages);
+    const dispatch = useDispatch();
+    const chat = useSelector((state) => state.chat.chat);
     const getMessages  = async () => {
         const loadMessages = await getAllMessages(activeChat);
         const sortedMessages = loadMessages.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
-        setMessage(sortedMessages);
+        dispatch(setMessages(sortedMessages));
         setIsNewMessage(false);
         if (newMessage !== null){
             setIsNewMessage(true);
@@ -31,7 +37,7 @@ const PageChat = () => {
     }
     const getCurrentChat = async ()=>{
         const loadChat = await getChat(activeChat);
-        setChat(loadChat);
+        dispatch(setChat(loadChat));
         setIsNewMessage(true);
     }
     const initializeLastMessage = async () => {
@@ -71,6 +77,7 @@ const PageChat = () => {
 
     const addMessage = async (newMess) => {
         const data = await saveMessage(newMess);
+        dispatch(addMessages(data));
         setNewMessage(data);
         console.log(newMess);
         getMessages();
@@ -79,7 +86,7 @@ const PageChat = () => {
     return (
         <div id="chat-page" className="chat">
             <HeaderChat chat={chat} />
-            <ContainerChat message={message} isNewMessage={isNewMessage}/>
+            <ContainerChat message={messages} isNewMessage={isNewMessage}/>
             <InputForm onAddMessage={addMessage}/>
         </div>
     );
