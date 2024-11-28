@@ -10,23 +10,23 @@ const getMessage = (lastMessage) => {
     }
   }
   
-const callNotify = (title, mess, icone) => {
-    new Notification(title, { body: mess, icon: icone, });
+const callNotify = (title, mess) => {
+    new Notification(title, { body: mess });
 }
 
-export const showNotification = (lastMessage, icon) => {
-    const text = getMessage(lastMessage.last_message);
-    const sender = lastMessage.title;
+export const showNotification = (lastMessage) => {
+    const text = getMessage(lastMessage);
+    const sender = lastMessage.sender.username;
     console.log('общ');
     if (Notification.permission === "granted") {
-      callNotify(sender, text, icon);
+      callNotify(sender, text);
       console.log('1');
       return;
     }
     if (Notification.permission !== "denied") {
       Notification.requestPermission((permission) => {
         if (permission === "granted") {
-          callNotify(sender, text, icon);
+          callNotify(sender, text);
           console.log('2');
         }
       });

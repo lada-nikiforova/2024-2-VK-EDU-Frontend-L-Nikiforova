@@ -3,16 +3,10 @@ import './ContainerChat.scss';
 import { profile } from '../../constant';
 import defaultAvatar from '../../assets/avatar.png'
 
-const ContainerChat = ({message, isNewMessage}) => {
-    const bottomRef = useRef();
+const ContainerChat = ({message, ref}) => {
     const userId = localStorage.getItem('userId');
     const myUsername = JSON.parse(localStorage.getItem(profile)).username;
-    useEffect(() => {
-        if (isNewMessage){
-            bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
-        }
-        // console.log(isNewMessage);   
-    }, [message, isNewMessage]);
+    
     const renderMessageContent = (message) => {
         const isUrl = (text) => /https?:\/\/[^\s]+/g.test(text); 
         if (message.files && message.files.length > 0) {
@@ -40,7 +34,7 @@ const ContainerChat = ({message, isNewMessage}) => {
         }
     };
     return (
-        <div ref={bottomRef} className="container-chat">          
+        <>          
                 {message.map((mes) => (    
                     <div key={mes.id} className={`container-message ${mes.sender.id === userId ? 'my-message' : 'other-message'}`}>
                         {mes.sender.id !== userId && (
@@ -61,7 +55,7 @@ const ContainerChat = ({message, isNewMessage}) => {
                 ))}
                 
             
-        </div>
+        </>
     );
 }
 
