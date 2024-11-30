@@ -12,7 +12,8 @@ const ChatList = ({chat, onChatClick}) => {
                     <div className="container-img"><img className="chat-img" src={button.avatar || defaultAvatar} alt="chat image"/></div>
                     <div className="chat-info">
                         <div className="chat-name">{button.title}</div>
-                        <div className="chat-message">{button.last_message.text ? (<p>{button.last_message.text}</p>) : 
+                        <div className="chat-message">{button.last_message === null ? (<p>Нет сообщений</p>) : 
+                            button.last_message.text ? (<p>{button.last_message.text}</p>) : 
                             button.last_message.voice ? (<p>Голосовое сообщение</p>) : 
                             button.last_message.files.length > 0 ? (<p>Фото</p>) : (<p>Нет сообщений</p>) }
                         </div>

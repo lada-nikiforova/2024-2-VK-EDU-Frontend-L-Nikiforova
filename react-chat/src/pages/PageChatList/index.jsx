@@ -7,11 +7,15 @@ import Modal from '../../components/Modal/Modal';
 import { activeChatId, activePerson } from '../../constant';
 import { HeaderChatList } from '../../components/Header';
 import { getAllChats } from '../../api/apiChat';
+import { useDispatch, useSelector } from 'react-redux';
+import { getChats, setChat } from '../../store/slices/chatSlice';
 
 
 const PageChatList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [chat, setChat] = useState([]);
+    // const [chats, setChats] = useState([]);
+    const dispatch = useDispatch();
+    const chats = useSelector((state) => state.chat.chats);
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -22,12 +26,12 @@ const PageChatList = () => {
     useEffect(()=>{
         // const loadChats = JSON.parse(localStorage.getItem(chats))||[];
         // console.log(loadChats);
-        getChats();
+        dispatch(getChats());
     }, []);
     const addChat = (newChat) => {
-        const updatedChat = [...chat, newChat];
+        const updatedChat = [...chats, newChat];
         console.log(updatedChat);
-        setChat(updatedChat);
+        dispatch(setChat(updatedChat));
         // localStorage.setItem(chats, JSON.stringify(updatedChat));
         closeModal();
     }
@@ -36,15 +40,11 @@ const PageChatList = () => {
         localStorage.setItem(activeChatId, chatId);
         localStorage.setItem(activePerson, name);
     }
-    const getChats  = async () => {
-        const loadChats = await getAllChats();
-        setChat(loadChats);
-    }
 
     return (
         <div id="chat-list" className="page-list"> 
             <HeaderChatList />
-            <ChatList chat={chat} onChatClick={chatClick}/>
+            <ChatList chat={chats} onChatClick={chatClick}/>
             <Footer />
             <EditButton onClick={openModal} />
             <Modal isOpen={isModalOpen} onClose={closeModal} onAddChat={addChat}/>

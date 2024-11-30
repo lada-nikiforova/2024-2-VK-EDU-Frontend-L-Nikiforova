@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getChat } from "../../api/apiChat";
+import { getAllChats, getChat } from "../../api/apiChat";
   
 const ChatSlice = createSlice({
     name: 'chat',
     initialState: {
+        chats: [], 
         chat: [],
         loading: false,
         error: null,
@@ -25,7 +26,18 @@ const ChatSlice = createSlice({
             .addCase(getCurrentChat.rejected, (state, action) => {
                 state.error = action.payload;
                 state.loading = false;
-            });
+            })
+            .addCase(getChats.pending, (state) =>{
+                state.loading = true;
+            })
+            .addCase(getChats.fulfilled, (state, action) => {
+                state.chats = action.payload;
+                state.loading = false;
+            })
+            .addCase(getChats.rejected, (state, action) => {
+                state.error = action.payload;
+                state.loading = false;
+            })
     },
 
 });
@@ -36,6 +48,17 @@ export const getCurrentChat = createAsyncThunk(
       try {
         const loadChat = await getChat(activeChat);
         return loadChat;
+      } catch (error) {
+        return rejectWithValue(error.response.data);
+      }
+    }
+);
+export const getChats = createAsyncThunk(
+    'chat/getChats', 
+    async () => {
+      try {
+        const loadChats = await getAllChats();
+        return loadChats;
       } catch (error) {
         return rejectWithValue(error.response.data);
       }
