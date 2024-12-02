@@ -9,6 +9,7 @@ import { HeaderChatList } from '../../components/Header';
 import { getAllChats } from '../../api/apiChat';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChats, setChat } from '../../store/slices/chatSlice';
+import Loader from '../../components/Loader/Loader';
 
 
 const PageChatList = () => {
@@ -16,6 +17,7 @@ const PageChatList = () => {
     // const [chats, setChats] = useState([]);
     const dispatch = useDispatch();
     const chats = useSelector((state) => state.chat.chats);
+    const loading = useSelector((state) => state.chat.loading);
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -24,8 +26,6 @@ const PageChatList = () => {
     };
     
     useEffect(()=>{
-        // const loadChats = JSON.parse(localStorage.getItem(chats))||[];
-        // console.log(loadChats);
         dispatch(getChats());
     }, []);
     const addChat = (newChat) => {
@@ -39,6 +39,10 @@ const PageChatList = () => {
         console.log(chatId, name, userId);
         localStorage.setItem(activeChatId, chatId);
         localStorage.setItem(activePerson, name);
+    }
+
+    if (loading) {
+        return <Loader/>; 
     }
 
     return (

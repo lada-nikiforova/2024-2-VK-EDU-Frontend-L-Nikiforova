@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 import InputProfile from "../../components/InputProfile/InputProfile";
 import { getCurrentUser, updateUser } from "../../api/apiUser";
 import defaultAvatar from "../../assets/avatar.png"
+import Loader from "../../components/Loader/Loader";
 
 
 const PageProfile = () => {
     const [error, setError] = useState({username: false, first_name: false, last_name: false});
     const [serverError, setServerError] = useState('');
     const [data, setData] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value.trim();
@@ -20,10 +22,17 @@ const PageProfile = () => {
     }
     const userId = localStorage.getItem('userId');
     const getUser = async () => {
-        const user = await getCurrentUser();
-        if (user) {
-            setData(user);
-            localStorage.setItem(profile, JSON.stringify(user)); 
+        setIsLoading(true);
+        try {
+            const user = await getCurrentUser();
+            if (user) {
+                setData(user);
+                localStorage.setItem(profile, JSON.stringify(user));
+            }
+        } catch (error) {
+            console.error('Failed to fetch user data:', error);
+        } finally {
+            setIsLoading(false); 
         }
     }
     useEffect(() => {
@@ -73,6 +82,9 @@ const PageProfile = () => {
             reader.readAsDataURL(file);
         }
     };
+    if (isLoading) {
+        <Loader/>
+    }
 
     return (
         <div id="profile-page" > 

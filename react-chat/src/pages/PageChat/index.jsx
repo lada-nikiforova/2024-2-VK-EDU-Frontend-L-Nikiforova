@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addMessages, fetchMessages, setMessages } from '../../store/slices/messagesSlice';
 import { getCurrentChat } from '../../store/slices/chatSlice';
 import { connectToCentrifugo, disconnectFromCentrifugo } from '../../store/action';
+import Loader from '../../components/Loader/Loader';
 
 
 const PageChat = () => {
@@ -17,6 +18,7 @@ const PageChat = () => {
     const lastMessage = useRef({});
     const messagesRef = useRef(null);
     const messages = useSelector((state) => state.messages.messages);
+    const loading = useSelector((state) => state.messages.loading);
     const dispatch = useDispatch();
     const userId = localStorage.getItem('userId');
     const chat = useSelector((state) => state.chat.chat);
@@ -55,13 +57,16 @@ const PageChat = () => {
         };
     }, [activeChat]);
     
-
     const addMessage = async (newMess) => {
         const data = await saveMessage(newMess);
         dispatch(addMessages(data));
         console.log(newMess);
     }
 
+    if (loading) {
+        return <Loader/>; 
+    }
+    
     return (
         <div id="chat-page" className="chat">
             <HeaderChat chat={chat} />
