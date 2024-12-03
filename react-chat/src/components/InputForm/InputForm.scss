@@ -30,6 +30,7 @@ input {
     display: flex;
     
 }
+
   
 .form-input.error::placeholder {
     color: red;
@@ -52,8 +53,7 @@ input {
     display: flex;
     flex-direction: column;
 }
-
-.attachment-menu button {
+.file-upload-label{
     padding: 10px 20px;
     background: none;
     border: none;
@@ -63,9 +63,16 @@ input {
     font-size: 18px;
 }
 
-.attachment-menu button:hover {
-    background-color: #f0f0f0;
+.attachment-menu button{
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    font-size: 18px;
 }
+
 
 .recording{
     color: red;
