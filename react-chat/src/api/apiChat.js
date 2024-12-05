@@ -14,7 +14,7 @@ export const getAllChats = async () => {
 
 export const createNewChat = async (id, title) => {
     let chatTitle = title;
-
+    let flag = true;
     if (!title) {
         try {
             const user = await getUser(id);
@@ -23,12 +23,12 @@ export const createNewChat = async (id, title) => {
             console.error("Ошибка получения имени пользователя:", error);
         }
     }
+    if (id.length > 1){flag = false;}
+    else{flag=true;}
     const { data } = await apiClient.post('/api/chats/',
       {
-        "is_private": true,
-        "members": [
-            id
-        ],
+        "is_private": flag,
+        "members": id,
         title: chatTitle
 
       }
