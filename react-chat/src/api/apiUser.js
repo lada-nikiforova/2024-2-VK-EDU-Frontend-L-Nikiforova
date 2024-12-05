@@ -27,9 +27,5 @@ export const getUser = async (id) => {
 
 export const getUsers = async (params) => {
     const { data } = await apiClient.get('/api/users/', {params});
-    return data;
-        // users: data.results,  // Список пользователей
-        // next: data.next,      // Ссылка на следующую страницу
-        // previous: data.previous,  // Ссылка на предыдущую страницу
-    
+    return data;  
 }

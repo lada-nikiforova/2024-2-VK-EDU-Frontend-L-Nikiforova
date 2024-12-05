@@ -51,8 +51,8 @@ const Modal = ({ isOpen, onClose, onAddChat}) => {
         fetchUsers();
     }, [page, search]);
     const handleSearchChange = (event) => {
-        setSearch(event.target.value); // Обновляем поисковый запрос
-        setPage(1); // Сбрасываем страницу на первую при новом поиске
+        setSearch(event.target.value);
+        setPage(1);
     };
     const handlePageChange = (newPage) => {
         setPage(newPage); 
