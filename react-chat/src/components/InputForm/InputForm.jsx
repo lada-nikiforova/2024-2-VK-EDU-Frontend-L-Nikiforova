@@ -140,17 +140,18 @@ const InputForm = ({onAddMessage}) => {
                     {isAttachmentMenuOpen && (
                         <div className="attachment-menu">
                             <button onClick={getLocation}>Геопозиция</button>
-                            <button>
+                            
+                            {/* <button > */}
                                 <label htmlFor="file-upload" className="file-upload-label">Фото</label>
                                 <input
                                     id="file-upload"
                                     type="file"
                                     accept="image/*"
                                     style={{ display: 'none' }}
-                                    multiple
+                                    multiple 
                                     onChange={handleFile}
                                 />
-                            </button>
+                            {/* </button> */}
                         </div>
                     )}
                 </div>

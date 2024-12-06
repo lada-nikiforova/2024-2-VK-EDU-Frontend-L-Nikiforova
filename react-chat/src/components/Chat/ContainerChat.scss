@@ -15,7 +15,9 @@
     border: none  
 }
 .img-icon{
-    width: 60px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .message {
     display: inline-block;

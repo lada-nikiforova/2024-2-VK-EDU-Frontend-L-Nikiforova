@@ -33,7 +33,7 @@ const Modal = ({ isOpen, onClose, onAddChat}) => {
     return (
         <>
             <div className={`modal ${isOpen ? '' : 'hidden'}`} >
-                <div className='container-close'><button className="icon-button" onClick={()=>{setError(false); onClose;}}>
+                <div className='container-close'><button className="icon-button" onClick={()=>{setError(false); onClose();}}>
                     <CloseIcon sx={{ fontSize: 40 }} className="icon close-icon" />
                 </button></div>
                 
@@ -45,7 +45,7 @@ const Modal = ({ isOpen, onClose, onAddChat}) => {
                 {error && <p className="error-text">Введите id собеседника.</p>}
                 <button onClick={createChat} className="button-create-chat">Создать чат</button>
             </div>
-            <div className={`overlay ${isOpen ? '' : 'hidden'}`} onClick={()=>{setError(false); onClose;}}></div>
+            <div className={`overlay ${isOpen ? '' : 'hidden'}`} onClick={()=>{setError(false); onClose();}}></div>
         </>
     );
 }

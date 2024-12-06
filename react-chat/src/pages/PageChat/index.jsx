@@ -1,85 +1,78 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import './index.scss';
 import {HeaderChat} from '../../components/Header';
 import ContainerChat from '../../components/Chat/ContainerChat.jsx';
 import InputForm from '../../components/InputForm/InputForm.jsx';
 import { activeChatId, profile } from '../../constant';
-import { getAllMessages, saveMessage } from '../../api/apiMessage';
-import { getAllChats, getChat } from '../../api/apiChat';
+import { saveMessage } from '../../api/apiMessage';
 import { showNotification } from '../../notification';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMessages, fetchMessages, setMessages } from '../../store/slices/messagesSlice';
+import { getCurrentChat } from '../../store/slices/chatSlice';
+import { connectToCentrifugo, disconnectFromCentrifugo } from '../../store/action';
+import Loader from '../../components/Loader/Loader';
+
 
 const PageChat = () => {
-    const [message, setMessage] = useState([]);
-    const [newMessage, setNewMessage] = useState(null);
-    const [chat, setChat] = useState([]);
     const activeChat = localStorage.getItem(activeChatId);
-    const [isNewMessage, setIsNewMessage] = useState(false);
     const lastMessage = useRef({});
-    const getMessages  = async () => {
-        const loadMessages = await getAllMessages(activeChat);
-        const sortedMessages = loadMessages.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
-        setMessage(sortedMessages);
-        setIsNewMessage(false);
-        if (newMessage !== null){
-            setIsNewMessage(true);
-            // console.log('da');
+    const messagesRef = useRef(null);
+    const messages = useSelector((state) => state.messages.messages);
+    const loading = useSelector((state) => state.messages.loading);
+    const dispatch = useDispatch();
+    const userId = localStorage.getItem('userId');
+    const chat = useSelector((state) => state.chat.chat);
+    const scrollToBottom = () => {
+        if (messagesRef.current) {
+            messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
         }
-        else{
-            setIsNewMessage(false);
-            // console.log('net');
-        }        
-    }
-    const getCurrentChat = async ()=>{
-        const loadChat = await getChat(activeChat);
-        setChat(loadChat);
-        setIsNewMessage(true);
-    }
-    const initializeLastMessage = async () => {
-        const allChats = await getAllChats();
-        const initialLastMessages = {};
-        allChats.forEach((chat) => {
-            if (chat.last_message) {
-                initialLastMessages[chat.id] = chat.last_message.id;
+    };
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+    const centrifugoChat = (activeChat) => {
+        connectToCentrifugo(activeChat, (event, message) => {
+          if (event === 'create') {
+            console.log('новое сообщение:', message);
+            if (message.sender.id === userId) {
+                console.log('Сообщение отправлено мной');
+                
+                return;
             }
+            if (message.chat !== activeChat){
+                showNotification(message);
+                return;
+            }
+            dispatch(addMessages(message));
+            
+          }
         });
-        lastMessage.current = initialLastMessages;
-    };
-    const addNotification = async () => {
-        const chats = await getAllChats(); 
-        for (const chat of chats) {
-            if (chat.id !== activeChat) {
-                if (lastMessage.current[chat.id] !== chat.last_message.id) {
-                    console.log("DA");
-                    lastMessage.current[chat.id] = chat.last_message.id; 
-                    showNotification(chat, chat.avatar); 
-                }
-            }
-        }
     };
     useEffect(() => {
-        initializeLastMessage();
-        getMessages();
-        getCurrentChat();
-        const intervalId = setInterval(getMessages, 1500);
-        return () => clearInterval(intervalId);
-    }, [activeChat]);
-    useEffect(() => {
-        const intervalId = setInterval(addNotification, 1500);
-        return () => clearInterval(intervalId);
+        dispatch(fetchMessages(activeChat));
+        dispatch(getCurrentChat(activeChat));
+        centrifugoChat(userId);
+        return () => {
+            disconnectFromCentrifugo();
+        };
     }, [activeChat]);
     
-
     const addMessage = async (newMess) => {
         const data = await saveMessage(newMess);
-        setNewMessage(data);
+        dispatch(addMessages(data));
         console.log(newMess);
-        getMessages();
     }
 
+    if (loading) {
+        return <Loader/>; 
+    }
+    
     return (
         <div id="chat-page" className="chat">
             <HeaderChat chat={chat} />
-            <ContainerChat message={message} isNewMessage={isNewMessage}/>
+            <div className="container-chat" ref={messagesRef}>
+                <ContainerChat message={messages} />
+            </div>
             <InputForm onAddMessage={addMessage}/>
         </div>
     );

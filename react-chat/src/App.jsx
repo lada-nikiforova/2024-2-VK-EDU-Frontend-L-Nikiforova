@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, useNavigate, Outlet, Navigate } from 'react-router-dom';
 import PageRegister from './pages/PageRegister';
 import apiClient from './api/apiClient';
+import { Provider } from 'react-redux';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
