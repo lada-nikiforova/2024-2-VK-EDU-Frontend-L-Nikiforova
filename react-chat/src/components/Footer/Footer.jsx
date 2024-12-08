@@ -10,11 +10,11 @@ const Footer = () => {
     return (
         <footer className="sidebar">  
             <button className="icon-button"><GroupIcon sx={{ fontSize: 40 }} className='icon'/></button>
-            <Link to={"/"} className={`icon-button ${location.pathname === "/" ? 'active' : ''}`}>
-                <ChatBubbleIcon sx={{ fontSize: 40 }} className='icon'/>
+            <Link to={"/"} className={`icon-button ${location.pathname === "/" ? 'active-btn' : ''}`}>
+                <ChatBubbleIcon sx={{ fontSize: 40 }} className={`icon ${location.pathname === "/" ? 'active' : ''}`}/>
             </Link>
-            <Link to={"/profile"} className={`icon-button ${location.pathname === "/profile" ? 'active' : ''}`}>
-                <SettingsIcon sx={{ fontSize: 40 }} className='icon'/>
+            <Link to={"/profile"} className={`icon-button ${location.pathname === "/profile" ? 'active-btn' : ''}`}>
+                <SettingsIcon sx={{ fontSize: 40 }} className={`icon ${location.pathname === "/profile" ? 'active' : ''}`}/>
             </Link>
         </footer>
     );
