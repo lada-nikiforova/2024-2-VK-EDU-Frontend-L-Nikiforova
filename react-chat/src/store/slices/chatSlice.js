@@ -5,7 +5,7 @@ const ChatSlice = createSlice({
     name: 'chat',
     initialState: {
         chats: [], 
-        chat: [],
+        chat: {},
         loading: false,
         error: null,
     },

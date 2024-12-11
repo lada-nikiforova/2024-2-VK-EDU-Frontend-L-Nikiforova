@@ -5,7 +5,7 @@ import {activePerson} from '../../constant';
 import { createNewChat } from '../../api/apiChat';
 import { getUsers } from '../../api/apiUser';
 import Loader from '../Loader/Loader';
-import  debounce  from 'lodash/debounce';
+import  debounce  from 'lodash.debounce';
 
 
 const Modal = ({ isOpen, onClose, onAddChat}) => {
@@ -69,7 +69,7 @@ const Modal = ({ isOpen, onClose, onAddChat}) => {
             debouncedFetchUsers.cancel();
         };
     }, [debouncedFetchUsers]);
-    
+
     const createChat = async (event) => {
         event.preventDefault(); 
         if (selectedUsers.length === 0) {

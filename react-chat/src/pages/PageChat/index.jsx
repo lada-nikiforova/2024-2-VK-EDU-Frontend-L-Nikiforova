@@ -52,6 +52,7 @@ const PageChat = () => {
     };
     useEffect(() => {
         centrifugoChat(userId);
+        // console.log(chat);
         dispatch(fetchMessages(activeChat));
         dispatch(getCurrentChat(activeChat));
         return () => {
