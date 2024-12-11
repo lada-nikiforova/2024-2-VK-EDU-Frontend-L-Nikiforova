@@ -17,7 +17,6 @@ const PageChatList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     // const [chats, setChats] = useState([]);
     const dispatch = useDispatch();
-    const [users, setUsers] = useState([]);
     const chats = useSelector((state) => state.chat.chats);
     const loading = useSelector((state) => state.chat.loading);
     const openModal = () => {

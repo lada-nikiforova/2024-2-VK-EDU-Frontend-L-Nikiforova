@@ -8,7 +8,7 @@ import { saveMessage } from '../../api/apiMessage';
 import { showNotification } from '../../notification';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessages, fetchMessages, setMessages } from '../../store/slices/messagesSlice';
-import { getCurrentChat } from '../../store/slices/chatSlice';
+import { getCurrentChat, setChat } from '../../store/slices/chatSlice';
 import { connectToCentrifugo, disconnectFromCentrifugo } from '../../store/action';
 import Loader from '../../components/Loader/Loader';
 
@@ -22,6 +22,8 @@ const PageChat = () => {
     const dispatch = useDispatch();
     const userId = localStorage.getItem('userId');
     const chat = useSelector((state) => state.chat.chat);
+    const loadingChat = useSelector((state) => state.chat.loading);
+    
     const scrollToBottom = () => {
         if (messagesRef.current) {
             messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
@@ -49,13 +51,17 @@ const PageChat = () => {
         });
     };
     useEffect(() => {
+        centrifugoChat(userId);
         dispatch(fetchMessages(activeChat));
         dispatch(getCurrentChat(activeChat));
-        centrifugoChat(userId);
         return () => {
             disconnectFromCentrifugo();
         };
     }, [activeChat]);
+    // useEffect(()=>{
+        
+    //     console.log(chat);
+    // }, []);
     
     const addMessage = async (newMess) => {
         const data = await saveMessage(newMess);
@@ -64,6 +70,9 @@ const PageChat = () => {
     }
 
     if (loading) {
+        return <Loader/>; 
+    }
+    if (loadingChat) {
         return <Loader/>; 
     }
     

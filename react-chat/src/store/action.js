@@ -20,7 +20,7 @@ export const connectToCentrifugo = (id, onMessageReceived) => {
         })
         .then((res) => {
             if (!res.ok) {
-                throw new Error('Не удалось получить токен подключения');
+              throw new Error('Не удалось получить токен подключения');
             }
             return res.json();})
         .then((data) => { resolve(data.token)})
@@ -28,7 +28,7 @@ export const connectToCentrifugo = (id, onMessageReceived) => {
     })
     });
 
-    
+    console.log(access_token);
     centrifuge.connect();
     centrifuge.on('connect', (ctx) => console.log('Connected to Centrifugo', ctx));
     centrifuge.on('disconnect', (ctx) => console.log('Disconnected:', ctx));

@@ -8,25 +8,66 @@ import { HashRouter, Routes, Route, useNavigate, Outlet, Navigate } from 'react-
 import PageRegister from './pages/PageRegister';
 import apiClient from './api/apiClient';
 import { Provider } from 'react-redux';
+import {jwtDecode} from 'jwt-decode';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
+  const checkTokenValidity = () => {
     const accessToken = localStorage.getItem('access_token');
     if (accessToken) {
-      apiClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      setIsAuthenticated(true);
+      try {
+        const decoded = jwtDecode(accessToken);
+        const currentTime = Date.now() / 1000;
+        console.log(decoded);
+        console.log('Cur: ', currentTime);
+        if (decoded.exp - currentTime <= 300) {
+          refreshAuthToken();
+          console.log("REF");
+        } else if (decoded.exp > currentTime) {
+          apiClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+          setIsAuthenticated(true);
+          return;
+        }
+      } catch (err) {
+        console.error('Invalid token', err);
+      }
     }
-    setIsLoading(false);
+    else {
+      setIsAuthenticated(false);
+    }
+    setIsAuthenticated(false);
+    
+  };
+
+  const refreshAuthToken = async () => {
+    try {
+      const response = await apiClient.post('/auth/refresh/');
+      const { access_token } = response.data;
+      localStorage.setItem('access_token', access_token);
+      apiClient.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+      setIsAuthenticated(true);
+      console.log('REFRESHED TOKEN')
+    } catch (err) {
+      console.error('Failed to refresh token', err);
+      setIsAuthenticated(false);
+    }
+  };
+  useEffect(() => {
+    checkTokenValidity();
+    const interval = setInterval(() => {
+      checkTokenValidity();
+    }, 60000); 
+
+    return () => clearInterval(interval);
   }, []);
+  
 
   const handleAuthSuccess = () => {
     setIsAuthenticated(true);
   };
 
   const ProtectedRoutes = () => {
-    if (isLoading) return null;
-    return isAuthenticated ? <Outlet /> : <Navigate to="/auth" />;
+    // console.log(isAuthenticated);
+    return isAuthenticated ? <Outlet/> : <Navigate to="/auth" replace/>;
   };
 
   return (
