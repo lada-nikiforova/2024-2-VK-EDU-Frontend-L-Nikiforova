@@ -9,32 +9,38 @@ import PageRegister from './pages/PageRegister';
 import apiClient from './api/apiClient';
 import { Provider } from 'react-redux';
 import {jwtDecode} from 'jwt-decode';
+import Loader from './components/Loader/Loader';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isChecking, setIsChecking] = useState(true);
   const checkTokenValidity = () => {
+    setIsChecking(true);
     const accessToken = localStorage.getItem('access_token');
     if (accessToken) {
       try {
         const decoded = jwtDecode(accessToken);
         const currentTime = Date.now() / 1000;
-        console.log(decoded);
+        // console.log(decoded);
         console.log('Cur: ', currentTime);
         if (decoded.exp - currentTime <= 300) {
           refreshAuthToken();
           console.log("REF");
         } else if (decoded.exp > currentTime) {
           apiClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+          setIsChecking(false);
           setIsAuthenticated(true);
+          // console.log('3', isAuthenticated)
           return;
         }
       } catch (err) {
         console.error('Invalid token', err);
       }
     }
-    else {
+    else{
       setIsAuthenticated(false);
+      setIsChecking(true);
+      // console.log('2', isAuthenticated)
     }
-    setIsAuthenticated(false);
     
   };
 
@@ -60,14 +66,22 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
   
+  useEffect(() => {
+    console.log('isAuthenticated changed:', isAuthenticated);
+  }, [isAuthenticated]);
 
   const handleAuthSuccess = () => {
     setIsAuthenticated(true);
   };
 
   const ProtectedRoutes = () => {
-    // console.log(isAuthenticated);
-    return isAuthenticated ? <Outlet/> : <Navigate to="/auth" replace/>;
+    if (isChecking) {
+      return <Loader/>
+    }
+    else {
+      return isAuthenticated ? <Outlet/> : <Navigate to="/auth" replace/>;
+    }
+    
   };
 
   return (
