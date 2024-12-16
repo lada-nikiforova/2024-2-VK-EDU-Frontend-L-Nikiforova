@@ -2,6 +2,7 @@ import React from 'react';
 import './ChatList.scss';
 import { Link } from 'react-router-dom';
 import  defaultAvatar from '../../assets/avatar.png'
+import LazyImage from '../LazyImage/LazyImage';
 
 
 const ChatList = ({chat, onChatClick}) => {
@@ -31,7 +32,7 @@ const ChatList = ({chat, onChatClick}) => {
             {chat.map((button)=>(
                 <Link to= {`/chat/${button.id}`} key={button.id} id={button.id} className='container-button-chat' onClick={()=>{onChatClick(button.id, button.title);}}>
                     <div className="container-img">
-                        {button.avatar === null ? renderAvatar(button) : <img className="chat-img" src={button.avatar}/>}
+                        {button.avatar === null ? renderAvatar(button) : <LazyImage className="chat-img" alt="Avatar user" src={button.avatar} containerSelector=".list"/>}
                     </div>
                     <div className="chat-info">
                         <div className="chat-name">{button.title}</div>
