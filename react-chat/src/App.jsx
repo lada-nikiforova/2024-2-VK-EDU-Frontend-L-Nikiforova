@@ -38,9 +38,9 @@ const App = () => {
     }
     else{
       setIsAuthenticated(false);
-      setIsChecking(true);
       // console.log('2', isAuthenticated)
     }
+    setIsChecking(false);
     
   };
 
