@@ -81,22 +81,51 @@ const App = () => {
     else {
       return isAuthenticated ? <Outlet/> : <Navigate to="/auth" replace/>;
     }
-    
+  };
+  const onLogout = ()=>{
+    setIsAuthenticated(false);
+  }
+  const AuthSwitch = () => {
+    if (isChecking) {
+      return <Loader />;
+    }
+
+    return isAuthenticated ? (
+      <Routes>
+        <Route path="/chat/:id" element={<PageChat />} />
+        <Route path="/" element={<PageChatList onLogout={onLogout} />} />
+        <Route path="/profile" element={<PageProfile />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    ) : (
+      <Routes>
+        <Route path="/auth" element={<PageAuth onAuthSuccess={handleAuthSuccess} />} />
+        <Route path="/register" element={<PageRegister />} />
+        <Route path="*" element={<Navigate to="/auth" replace />} />
+      </Routes>
+    );
   };
 
   return (
     <HashRouter>
-      <Routes>
-        <Route path="/auth" element={<PageAuth onAuthSuccess={handleAuthSuccess} />} />
-        <Route path="/register" element={<PageRegister/>} />
-        <Route element={<ProtectedRoutes />}>
-          <Route path="/chat/:id" element={<PageChat />} />
-          <Route path="/" element={<PageChatList />} />
-          <Route path="/profile" element={<PageProfile />} />
-        </Route>
-      </Routes>
+      <AuthSwitch />
     </HashRouter>
   );
 };
+
+//   return (
+//     <HashRouter>
+//       <Routes>
+//         <Route path="/auth" element={<PublicRoutes> <PageAuth onAuthSuccess={handleAuthSuccess} /></PublicRoutes>} />
+//         <Route path="/register" element={<PublicRoutes> <PageRegister /> </PublicRoutes>} />
+//         <Route element={<ProtectedRoutes />}>
+//           <Route path="/chat/:id" element={<PageChat />} />
+//           <Route path="/" element={<PageChatList />} />
+//           <Route path="/profile" element={<PageProfile />} />
+//         </Route>
+//       </Routes>
+//     </HashRouter>
+//   );
+// };
 
 export default App;

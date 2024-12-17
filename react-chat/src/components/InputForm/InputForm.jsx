@@ -1,11 +1,10 @@
 import {useState, useEffect, useRef} from 'react';
 import './InputForm.scss';
 import  SendIcon from '@mui/icons-material/Send';
-import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MicIcon from '@mui/icons-material/Mic';
 import StopIcon from '@mui/icons-material/Stop';
-import {activeChatId, activePerson} from '../../constant';
+import {activeChatId} from '../../constant';
 
 const InputForm = ({onAddMessage}) => {
     const [message, setMessage] = useState('');

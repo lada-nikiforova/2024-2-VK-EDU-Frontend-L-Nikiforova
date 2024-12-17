@@ -4,11 +4,12 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import SearchIcon from '@mui/icons-material/Search';
 import { logout } from '../../api/apiAuth'; 
 import { useNavigate } from 'react-router-dom';
-export const HeaderChatList = () => {
+export const HeaderChatList = ({onLogout}) => {
     const navigate = useNavigate();
     const handleLogout = () => {
-    logout();
-    navigate('/auth'); 
+        logout();
+        onLogout();
+        navigate('/auth'); 
     };
     return (
         <header className="header">
