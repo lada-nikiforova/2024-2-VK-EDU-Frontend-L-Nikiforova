@@ -10,6 +10,7 @@ import { getAllChats } from '../../api/apiChat';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChats, setChat } from '../../store/slices/chatSlice';
 import Loader from '../../components/Loader/Loader';
+import { getUsers } from '../../api/apiUser';
 
 
 const PageChatList = () => {
@@ -32,6 +33,7 @@ const PageChatList = () => {
         const updatedChat = [...chats, newChat];
         console.log(updatedChat);
         dispatch(setChat(updatedChat));
+        dispatch(getChats());
         // localStorage.setItem(chats, JSON.stringify(updatedChat));
         closeModal();
     }
@@ -51,7 +53,7 @@ const PageChatList = () => {
             <ChatList chat={chats} onChatClick={chatClick}/>
             <Footer />
             <EditButton onClick={openModal} />
-            <Modal isOpen={isModalOpen} onClose={closeModal} onAddChat={addChat}/>
+            <Modal isOpen={isModalOpen} onClose={closeModal} onAddChat={addChat} />
         </div>
     );
 }

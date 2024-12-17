@@ -8,25 +8,80 @@ import { HashRouter, Routes, Route, useNavigate, Outlet, Navigate } from 'react-
 import PageRegister from './pages/PageRegister';
 import apiClient from './api/apiClient';
 import { Provider } from 'react-redux';
+import {jwtDecode} from 'jwt-decode';
+import Loader from './components/Loader/Loader';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
+  const [isChecking, setIsChecking] = useState(true);
+  const checkTokenValidity = () => {
+    setIsChecking(true);
     const accessToken = localStorage.getItem('access_token');
     if (accessToken) {
-      apiClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      setIsAuthenticated(true);
+      try {
+        const decoded = jwtDecode(accessToken);
+        const currentTime = Date.now() / 1000;
+        // console.log(decoded);
+        console.log('Cur: ', currentTime);
+        if (decoded.exp - currentTime <= 300) {
+          refreshAuthToken();
+          console.log("REF");
+        } else if (decoded.exp > currentTime) {
+          apiClient.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+          setIsChecking(false);
+          setIsAuthenticated(true);
+          // console.log('3', isAuthenticated)
+          return;
+        }
+      } catch (err) {
+        console.error('Invalid token', err);
+      }
     }
-    setIsLoading(false);
+    else{
+      setIsAuthenticated(false);
+      // console.log('2', isAuthenticated)
+    }
+    setIsChecking(false);
+    
+  };
+
+  const refreshAuthToken = async () => {
+    try {
+      const response = await apiClient.post('/auth/refresh/');
+      const { access_token } = response.data;
+      localStorage.setItem('access_token', access_token);
+      apiClient.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+      setIsAuthenticated(true);
+      console.log('REFRESHED TOKEN')
+    } catch (err) {
+      console.error('Failed to refresh token', err);
+      setIsAuthenticated(false);
+    }
+  };
+  useEffect(() => {
+    checkTokenValidity();
+    const interval = setInterval(() => {
+      checkTokenValidity();
+    }, 60000); 
+
+    return () => clearInterval(interval);
   }, []);
+  
+  useEffect(() => {
+    console.log('isAuthenticated changed:', isAuthenticated);
+  }, [isAuthenticated]);
 
   const handleAuthSuccess = () => {
     setIsAuthenticated(true);
   };
 
   const ProtectedRoutes = () => {
-    if (isLoading) return null;
-    return isAuthenticated ? <Outlet /> : <Navigate to="/auth" />;
+    if (isChecking) {
+      return <Loader/>
+    }
+    else {
+      return isAuthenticated ? <Outlet/> : <Navigate to="/auth" replace/>;
+    }
+    
   };
 
   return (

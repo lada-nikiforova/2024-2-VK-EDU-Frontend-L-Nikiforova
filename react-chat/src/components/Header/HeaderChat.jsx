@@ -27,6 +27,7 @@ export const HeaderChat = ({chat}) => {
             </div>
         );
     }
+    console.log(chat);
     return (
         <div className="main_header">
             <Link to={"/"}>
@@ -36,7 +37,8 @@ export const HeaderChat = ({chat}) => {
                 {chat.avatar === null ? renderAvatar(chat) : <img className="img-header" src={chat.avatar}/>}
             </div>
             <div className = "text-header"> <p className="person-name">{chat.title}</p>
-            <p className = "status">Онлайн</p> </div>
+            <p className = "status"> {chat?.members?.length > 2 ? `${chat?.members?.length} участников` : 'Онлайн'}</p>
+            </div> 
         </div>
     );
 }

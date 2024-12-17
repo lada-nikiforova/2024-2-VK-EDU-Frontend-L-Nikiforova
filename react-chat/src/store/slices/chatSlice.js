@@ -5,7 +5,7 @@ const ChatSlice = createSlice({
     name: 'chat',
     initialState: {
         chats: [], 
-        chat: [],
+        chat: {},
         loading: false,
         error: null,
     },
@@ -21,6 +21,7 @@ const ChatSlice = createSlice({
             })
             .addCase(getCurrentChat.fulfilled, (state, action) => {
                 state.chat = action.payload;
+                console.log(state.chat);
                 state.loading = false;
             })
             .addCase(getCurrentChat.rejected, (state, action) => {
@@ -47,6 +48,7 @@ export const getCurrentChat = createAsyncThunk(
     async (activeChat, { rejectWithValue }) => {
       try {
         const loadChat = await getChat(activeChat);
+        console.log(loadChat);
         return loadChat;
       } catch (error) {
         return rejectWithValue(error.response.data);

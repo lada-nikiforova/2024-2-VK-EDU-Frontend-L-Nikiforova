@@ -21,6 +21,11 @@ export const updateUser = async (id, formData) => {
 };
 
 export const getUser = async (id) => {
-    const { data } = await apiClient.get(`api/user/${id}`);
+    const { data } = await apiClient.get(`/api/user/${id}/`);
     return data;
+}
+
+export const getUsers = async (params) => {
+    const { data } = await apiClient.get('/api/users/', {params});
+    return data;  
 }

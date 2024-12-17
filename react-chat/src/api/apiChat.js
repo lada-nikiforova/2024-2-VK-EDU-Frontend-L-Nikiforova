@@ -2,7 +2,7 @@ import apiClient from "./apiClient";
 import { getUser } from "./apiUser";
 
 export const getChat = async (id) => {
-    const { data } = await apiClient.get(`/api/chat/${id}`);
+    const { data } = await apiClient.get(`/api/chat/${id}/`);
     return data;
 };
 
@@ -14,7 +14,6 @@ export const getAllChats = async () => {
 
 export const createNewChat = async (id, title) => {
     let chatTitle = title;
-
     if (!title) {
         try {
             const user = await getUser(id);
@@ -25,10 +24,8 @@ export const createNewChat = async (id, title) => {
     }
     const { data } = await apiClient.post('/api/chats/',
       {
-        "is_private": true,
-        "members": [
-            id
-        ],
+        "is_private": id.length > 1,
+        "members": id,
         title: chatTitle
 
       }
