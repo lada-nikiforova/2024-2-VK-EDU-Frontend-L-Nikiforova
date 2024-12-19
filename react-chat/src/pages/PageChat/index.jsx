@@ -3,7 +3,7 @@ import './index.scss';
 import {HeaderChat} from '../../components/Header';
 import ContainerChat from '../../components/Chat/ContainerChat.jsx';
 import InputForm from '../../components/InputForm/InputForm.jsx';
-import { activeChatId, profile } from '../../constant';
+import { activeChatId } from '../../constant';
 import { saveMessage } from '../../api/apiMessage';
 import { showNotification } from '../../notification';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +15,6 @@ import Loader from '../../components/Loader/Loader';
 
 const PageChat = () => {
     const activeChat = localStorage.getItem(activeChatId);
-    const lastMessage = useRef({});
     const messagesRef = useRef(null);
     const messages = useSelector((state) => state.messages.messages);
     const loading = useSelector((state) => state.messages.loading);
@@ -32,6 +31,9 @@ const PageChat = () => {
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
+    useEffect(() => {
+        scrollToBottom();
+    }, [activeChat]);
     const centrifugoChat = (activeChat) => {
         connectToCentrifugo(activeChat, (event, message) => {
           if (event === 'create') {

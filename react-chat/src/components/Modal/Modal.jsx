@@ -1,7 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
 import './Modal.scss';
 import CloseIcon from '@mui/icons-material/Close';
-import {activePerson} from '../../constant';
 import { createNewChat } from '../../api/apiChat';
 import { getUsers } from '../../api/apiUser';
 import Loader from '../Loader/Loader';

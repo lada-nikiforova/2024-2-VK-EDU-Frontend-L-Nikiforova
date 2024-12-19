@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import './ContainerChat.scss';
 import { profile } from '../../constant';
-import defaultAvatar from '../../assets/avatar.png'
+import LazyImage from '../LazyImage/LazyImage';
 
 const ContainerChat = ({message}) => {
     const userId = localStorage.getItem('userId');
@@ -36,7 +36,7 @@ const ContainerChat = ({message}) => {
             return (
                 <div className="message-files">
                     {message.files.map((file, index) =>
-                        <img key={index} src={file.item} alt={`attachment-${index}`} className="message-image"/>
+                        <LazyImage key={index} src={file.item} alt={`attachment-${index}`} className="message-image" containerSelector=".container-chat"/>
                     )}
                 </div>
             );
@@ -62,7 +62,7 @@ const ContainerChat = ({message}) => {
                     <div key={mes.id} className={`container-message ${mes.sender.id === userId ? 'my-message' : 'other-message'}`}>
                         {mes.sender.id !== userId && (
                             <div className="img-container">
-                                {mes.sender.avatar === null ? renderAvatar(mes) : <img className="img-icon" src={mes.sender.avatar}/>}
+                                {mes.sender.avatar === null ? renderAvatar(mes) : <LazyImage className="img-icon" alt="Avatar user" src={mes.sender.avatar} containerSelector=".container-chat"/>}
                                </div>
                         )}
                         <div className= {`message-content`}>
