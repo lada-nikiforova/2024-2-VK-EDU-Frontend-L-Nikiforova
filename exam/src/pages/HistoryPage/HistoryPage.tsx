@@ -1,15 +1,25 @@
+import { useState } from 'react';
 import languages from '../../assets/languages.json';
 import './HistoryPage.scss'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
 const languageMap: Record<string, string> = languages;
+interface TranslationHistory {
+    from: string;
+    to: string;
+    text: string;
+    translate: string;
+}
 export const HistoryPage: React.FC = () => {
-    const historyString = localStorage.getItem('history');
-    const load: any[] = historyString ? JSON.parse(historyString) : [];
-    console.log(load)
-    const handleTranslate =  () => {
-        localStorage.removeItem('history');
-    }
+    const [load, setLoad] = useState<TranslationHistory[]>(() => {
+        const historyString = localStorage.getItem("history");
+        return historyString ? JSON.parse(historyString) : [];
+    });
+    
+    const handleTranslate = () => {
+        localStorage.removeItem("history"); 
+        setLoad([]); 
+    };
     return (
       <div className="history-page">
         <div className="container-header">
