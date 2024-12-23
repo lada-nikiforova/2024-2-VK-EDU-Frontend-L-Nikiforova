@@ -2,7 +2,7 @@ import Footer from "../../components/Footer/Footer";
 import {HeaderProfile} from "../../components/Header";
 import './index.scss';
 import {profile} from '../../constant';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputProfile from "../../components/InputProfile/InputProfile";
 import { getCurrentUser, updateUser } from "../../api/apiUser";
 import defaultAvatar from "../../assets/avatar.png"
@@ -106,7 +106,7 @@ const PageProfile = () => {
                     <InputProfile name="last_name" placeholder="Введите вашу фамилию" value={data.last_name} onChange={handleChange} error={error.last_name} errorMessage="Введите вашу фамилию." textInput='Фамилия'/>
                     <InputProfile name="username" placeholder="Введите имя пользователя"  value={data.username} onChange={handleChange} error={!!error.username || !!serverError} errorMessage={error.username ? "Введите как минимум 5 символов" : serverError} textInput='Имя пользователя'/>
                     <div className='container-input'>
-                        <label for="bio">О себе</label>
+                        <label htmlFor="bio">О себе</label>
                         <textarea className ='input-profile' maxLength={450} name="bio" placeholder="Напишите немного о себе" rows='5' type="text" value={data.bio} onChange={handleChange} />
                     </div> 
                 </form>           

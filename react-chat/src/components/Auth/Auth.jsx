@@ -17,7 +17,7 @@ const Auth = ({onAuthSuccess}) => {
       await login(credentials);
       onAuthSuccess();
       
-    } catch (error) {
+    } catch {
       alert('Ошибка входа');
     }
   };

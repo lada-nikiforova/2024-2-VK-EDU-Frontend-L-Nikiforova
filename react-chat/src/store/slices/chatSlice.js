@@ -62,7 +62,7 @@ export const getChats = createAsyncThunk(
         const loadChats = await getAllChats();
         return loadChats;
       } catch (error) {
-        return rejectWithValue(error.response.data);
+        return alert(error.response.data);
       }
     }
 );
