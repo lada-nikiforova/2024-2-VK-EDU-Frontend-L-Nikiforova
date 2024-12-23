@@ -1,4 +1,3 @@
-import React from 'react';
 import './ContainerChat.scss';
 import { profile } from '../../constant';
 import LazyImage from '../LazyImage/LazyImage';

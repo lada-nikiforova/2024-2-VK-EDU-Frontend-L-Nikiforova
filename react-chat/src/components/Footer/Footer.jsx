@@ -1,4 +1,3 @@
-import React from 'react';
 import './Footer.scss';
 import GroupIcon from '@mui/icons-material/Group';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';

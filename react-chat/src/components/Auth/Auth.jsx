@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { login } from '../../api/apiAuth';
 import './Auth.scss';
 import { Link } from 'react-router-dom';

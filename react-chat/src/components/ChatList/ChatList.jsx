@@ -1,4 +1,3 @@
-import React from 'react';
 import './ChatList.scss';
 import { Link } from 'react-router-dom';
 import LazyImage from '../LazyImage/LazyImage';

@@ -2,7 +2,7 @@ import Footer from "../../components/Footer/Footer";
 import {HeaderProfile} from "../../components/Header";
 import './index.scss';
 import {profile} from '../../constant';
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import InputProfile from "../../components/InputProfile/InputProfile";
 import { getCurrentUser, updateUser } from "../../api/apiUser";
 import defaultAvatar from "../../assets/avatar.png"

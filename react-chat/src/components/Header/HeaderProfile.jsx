@@ -1,4 +1,3 @@
-import React from 'react';
 import './HeaderChatList.scss';
 import CheckIcon from '@mui/icons-material/Check';
 

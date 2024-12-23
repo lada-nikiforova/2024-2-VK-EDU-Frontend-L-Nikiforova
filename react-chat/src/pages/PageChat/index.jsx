@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './index.scss';
 import {HeaderChat} from '../../components/Header';
 import ContainerChat from '../../components/Chat/ContainerChat.jsx';

@@ -1,4 +1,3 @@
-import React from 'react';
 import {useState, useRef} from 'react';
 import './InputForm.scss';
 import  SendIcon from '@mui/icons-material/Send';
