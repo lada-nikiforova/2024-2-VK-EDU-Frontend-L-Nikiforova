@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './Modal.scss';
 import CloseIcon from '@mui/icons-material/Close';
 import { createNewChat } from '../../api/apiChat';
@@ -81,7 +81,7 @@ const Modal = ({ isOpen, onClose, onAddChat}) => {
             onAddChat(newChat);
             setError({create_chat: false, title: false});
             onClose;
-        } catch (error) {
+        } catch {
             setError({create_chat: false, title: true});
             setData((prevData) => ({ ...prevData, title: '' }));
             isOpen;
@@ -130,9 +130,9 @@ const Modal = ({ isOpen, onClose, onAddChat}) => {
                 </form>
                 <form className='list-container'>
                     {users.results.map((us) => (
-                        <div div key={us.id} className='list-users'>
+                        <div key={us.id} className='list-users'>
                             <input id={`user-${us.id}`} checked={selectedUsers.includes(us.id)} onChange={() => handleUserSelect(us.id)} type="checkbox"></input>
-                            <label for={`user-${us.id}`}>{us.username}</label>
+                            <label htmlFor={`user-${us.id}`}>{us.username}</label>
                         </div>
                     ))}
                     

@@ -1,4 +1,5 @@
-import {useState, useEffect, useRef} from 'react';
+import React from 'react';
+import {useState, useRef} from 'react';
 import './InputForm.scss';
 import  SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -10,9 +11,9 @@ const InputForm = ({onAddMessage}) => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState(false);
     const chatId = localStorage.getItem(activeChatId);
-    const [isDragOver, setDragOver] = useState(false);
+    // const [isDragOver, setDragOver] = useState(false);
     const [isAttachmentMenuOpen, setAttachmentMenuOpen] = useState(false);
-    const [files, setFiles] = useState([]);
+    // const [files, setFiles] = useState([]);
     const [isRecording, setIsRecording] = useState(false);
     const mediaRecorderRef = useRef(null);
     const audioChunks = useRef([]);
@@ -44,7 +45,7 @@ const InputForm = ({onAddMessage}) => {
     const handleFile = (event) => {
         const selectedFiles = Array.from(event.target.files);
         if (selectedFiles.length) {
-            setFiles(selectedFiles);
+            // setFiles(selectedFiles);
             const formData = new FormData();
             formData.append('chat', chatId);
             selectedFiles.forEach((file) => formData.append('files', file));
@@ -74,10 +75,10 @@ const InputForm = ({onAddMessage}) => {
     const handleDrop = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        setDragOver(false);
+        // setDragOver(false);
         const selectedFiles = Array.from(event.dataTransfer.files);
         if (selectedFiles.length) {
-            setFiles(selectedFiles);
+            // setFiles(selectedFiles);
             const formData = new FormData();
             formData.append('chat', chatId);
             selectedFiles.forEach((file) => formData.append('files', file));
@@ -89,13 +90,13 @@ const InputForm = ({onAddMessage}) => {
     const handleDragOver = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        setDragOver(true);
+        // setDragOver(true);
     };
 
     const handleDragLeave = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        setDragOver(false);
+        // setDragOver(false);
     };
     const startRecording = async () => {
         try {

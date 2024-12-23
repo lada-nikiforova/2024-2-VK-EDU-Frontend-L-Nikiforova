@@ -4,10 +4,9 @@ import PageChat from './pages/PageChat/index.jsx';
 import PageChatList from './pages/PageChatList/index.jsx';
 import PageProfile from './pages/PageProfile/index.jsx';
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, useNavigate, Outlet, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import PageRegister from './pages/PageRegister';
 import apiClient from './api/apiClient';
-import { Provider } from 'react-redux';
 import {jwtDecode} from 'jwt-decode';
 import Loader from './components/Loader/Loader';
 const App = () => {
@@ -72,15 +71,6 @@ const App = () => {
 
   const handleAuthSuccess = () => {
     setIsAuthenticated(true);
-  };
-
-  const ProtectedRoutes = () => {
-    if (isChecking) {
-      return <Loader/>
-    }
-    else {
-      return isAuthenticated ? <Outlet/> : <Navigate to="/auth" replace/>;
-    }
   };
   const onLogout = ()=>{
     setIsAuthenticated(false);

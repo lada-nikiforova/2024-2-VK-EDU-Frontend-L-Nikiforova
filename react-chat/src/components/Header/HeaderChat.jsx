@@ -1,8 +1,7 @@
-import { useEffect, useState} from 'react';
+import React from 'react';
 import './HeaderChat.scss';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
-import defaultAvatar from '../../assets/avatar.png'
 
 export const HeaderChat = ({chat}) => {
     const renderAvatar = (chat) => {

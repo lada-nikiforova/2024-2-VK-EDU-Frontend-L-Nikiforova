@@ -7,8 +7,8 @@ import { activeChatId } from '../../constant';
 import { saveMessage } from '../../api/apiMessage';
 import { showNotification } from '../../notification';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessages, fetchMessages, setMessages } from '../../store/slices/messagesSlice';
-import { getCurrentChat, setChat } from '../../store/slices/chatSlice';
+import { addMessages, fetchMessages } from '../../store/slices/messagesSlice';
+import { getCurrentChat } from '../../store/slices/chatSlice';
 import { connectToCentrifugo, disconnectFromCentrifugo } from '../../store/action';
 import Loader from '../../components/Loader/Loader';
 
