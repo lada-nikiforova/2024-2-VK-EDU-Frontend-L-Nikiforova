@@ -5,7 +5,7 @@ interface TranslatorOutputProps {
 
 export const TranslatorOutput: React.FC<TranslatorOutputProps> = ({ translatedText }) => (
     <form className="form" >
-        <textarea className='translator-output' disabled value={translatedText || 'Текст перевода появится здесь'} />                                  
+        <textarea className='input-form' disabled value={translatedText || 'Текст перевода появится здесь'} />                                  
     </form>
 );
 

@@ -1,4 +1,5 @@
 import languages from '../../assets/languages.json';
+import './LanguageSelector.scss'
 
 interface LanguageSelectorProps {
     sourceLang: string;
@@ -10,7 +11,7 @@ interface LanguageSelectorProps {
     const languageEntries = Object.entries(languages).filter(([code]) => showAutodetect || code !== 'Autodetect');
     return (
       <div className="language-selector">
-        <select value={sourceLang} onChange={(e) => onChangeSourceLang(e.target.value)}>
+        <select className='selector' value={sourceLang} onChange={(e) => onChangeSourceLang(e.target.value)}>
           {languageEntries.map(([code, name]) => (
             <option key={code} value={code}>
               {name}
