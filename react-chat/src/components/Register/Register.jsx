@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { register } from '../../api/apiAuth';
 import '../Auth/Auth.scss';
-
+import {translate} from '../../../ts/utils/translate';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -19,10 +19,28 @@ const Register = () => {
         e.preventDefault();
         try {
             await register(data);
+            console.log(data);
             navigate('/auth');
         } catch (error) {
             if (error.response && error.response.data) {
-                setError(error.response.data); 
+                console.log(error.response.data);
+                const errors = error.response.data;
+                const translatedErrors = {};
+                for (const field in errors) {
+                    const messages = errors[field];
+                    translatedErrors[field] = await Promise.all(
+                        messages.map((msg) =>
+                            translate({
+                                text: msg,
+                                from: 'en-GB',
+                                to: 'ru-RU',
+                            })
+                        )
+                    );
+                }
+                console.log(translatedErrors);
+                setError(translatedErrors);
+
             } else {
                 alert('Ошибка регистрации');
             }

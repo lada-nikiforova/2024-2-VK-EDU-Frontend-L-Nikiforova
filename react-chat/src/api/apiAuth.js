@@ -3,9 +3,12 @@ import apiClient from './apiClient';
 export const register = async (userData) => {
   try {
     const response = await apiClient.post('/api/register/', userData);
+    console.log(response.data);
     return response.data;
   } catch (error) {
+    console.log(error);
     console.error("Registration error:", error);
+    
     throw error;
   }
 };

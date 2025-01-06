@@ -8,9 +8,8 @@ function buildCacheKey({ text, from, to }: TranslateOptions): string {
 }
 
 async function fetchTranslation(options: TranslateOptions): Promise<string> {
-    const { text, from, to, autoDetect } = options;
-    const sourceLang = autoDetect ? '' : from || 'auto';
-    const url = `${API_URL}?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${to}`;
+    const { text, from, to } = options;
+    const url = `${API_URL}?q=${encodeURIComponent(text)}&langpair=${from}|${to}`;
 
     const response = await fetch(url);
     if (!response.ok) {
@@ -35,6 +34,7 @@ export async function translate(options: TranslateOptions): Promise<string> {
     try {
         const translatedText = await fetchTranslation(options);
         cache.set(cacheKey, translatedText);
+        console.log(translatedText);
         return translatedText;
     } catch (error) {
         console.error('Translation error:', error);

@@ -7,6 +7,7 @@ import InputProfile from "../../components/InputProfile/InputProfile";
 import { getCurrentUser, updateUser } from "../../api/apiUser";
 import defaultAvatar from "../../assets/avatar.png"
 import Loader from "../../components/Loader/Loader";
+import {translate} from '../../../ts/utils/translate';
 
 
 const PageProfile = () => {
@@ -62,7 +63,12 @@ const PageProfile = () => {
                 await updateUser(userId, formData);
                 alert("Изменения сохранены и обновлены на сервере");
             } catch (error) {
-                setServerError(error.message);
+                const translated = await translate({
+                    text: error.message,
+                    from: 'en-GB',
+                    to: 'ru-RU',
+                });
+                setServerError(translated);
             }
         } 
         
