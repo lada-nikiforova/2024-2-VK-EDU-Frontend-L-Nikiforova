@@ -1,4 +1,3 @@
-import React from "react";
 import "../PageAuth/index.scss"
 import Register from "../../components/Register/Register";
 

@@ -1,4 +1,4 @@
-import React,  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './index.scss';
 import ChatList from "../../components/ChatList/ChatList";
 import Footer from "../../components/Footer/Footer";

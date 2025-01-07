@@ -1,5 +1,4 @@
 import './InputProfile.scss';
-import React from 'react';
 
 const InputProfile = (props) => {
     return (

@@ -1,4 +1,3 @@
-import React from 'react';
 import './HeaderChatList.scss';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import SearchIcon from '@mui/icons-material/Search';

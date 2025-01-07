@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import './Modal.scss';
 import CloseIcon from '@mui/icons-material/Close';
 import { createNewChat } from '../../api/apiChat';
